@@ -68,6 +68,10 @@ $OverallACCFolder_Rejected = "C:\Users\$Env:UserName\Downloads\_OVERALL_ACC\_Rej
 $OverallACCFolder_Incorrect = "C:\Users\$Env:UserName\Downloads\_OVERALL_ACC\_Incorrect_folder"
 
 
+#Folder initialization
+If(!(Test-Path "$PSScriptRoot\Logs")){
+    New-Item -ItemType Directory -Path "$PSScriptRoot\Logs" -Force
+    }
 
 ################ FUNCTIONS REGION START ################
 
