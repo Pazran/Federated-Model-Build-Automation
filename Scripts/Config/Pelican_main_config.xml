@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Files and folder location for the Pelican-Basic-FM Script. Update if there is folder structure change
+ -->
+<Config>
+	<NAPI_api>C:\Program Files\Autodesk\Navisworks Manage 2021\Autodesk.Navisworks.Api.dll</NAPI_api>
+	<NAPI_dc>C:\Program Files\Autodesk\Navisworks Manage 2021\Autodesk.Navisworks.Controls.dll</NAPI_dc>
+	<NAPI_auto>C:\Program Files\Autodesk\Navisworks Manage 2021\Autodesk.Navisworks.Automation.dll</NAPI_auto>
+	<BatchUtility>C:\Program Files\Autodesk\Navisworks Manage 2021\FiletoolsTaskRunner.exe</BatchUtility>
+	<BatchTextFolder>C:\Users\ljinkim\Downloads\_Temp\Temp Build Folder\20-Federated-Model\204-NWDs\_Data Files - Batch Utility</BatchTextFolder>
+	<BatchTextFile>
+		<ByLevel>C:\Users\ljinkim\Downloads\_Temp\Temp Build Folder\20-Federated-Model\204-NWDs\_Data Files - Batch Utility\1-Batch Utility-By Level.txt</ByLevel>
+		<ByBuilding>C:\Users\ljinkim\Downloads\_Temp\Temp Build Folder\20-Federated-Model\204-NWDs\_Data Files - Batch Utility\2-Batch Utility-By Building.txt</ByBuilding>
+		<ByOverall>C:\Users\ljinkim\Downloads\_Temp\Temp Build Folder\20-Federated-Model\204-NWDs\_Data Files - Batch Utility\3-Batch Utility-By Overall.txt</ByOverall>
+		<ByFederatedModel>C:\Users\ljinkim\Downloads\_Temp\Temp Build Folder\20-Federated-Model\204-NWDs\_Data Files - Batch Utility\4-Batch Utility-FEDERATED MODEL.txt</ByFederatedModel>
+		<ByFinalFM>C:\Users\ljinkim\Downloads\_Temp\Temp Build Folder\20-Federated-Model\204-NWDs\_Data Files - Batch Utility\5-Batch Utility-F26 PG-FM.txt</ByFinalFM>
+	</BatchTextFile>
+	<TempBuildFolder>
+		<ByLevel>C:\Users\ljinkim\Downloads\_Temp\Temp Build Folder\20-Federated-Model\204-NWDs\1 By Level</ByLevel>
+		<ByBuilding>C:\Users\ljinkim\Downloads\_Temp\Temp Build Folder\20-Federated-Model\204-NWDs\2 By Building</ByBuilding>
+		<ByOverall>C:\Users\ljinkim\Downloads\_Temp\Temp Build Folder\20-Federated-Model\204-NWDs\3 By Overall</ByOverall>
+		<ByFederatedModel>C:\Users\ljinkim\Downloads\_Temp\Temp Build Folder\20-Federated-Model\204-NWDs\FEDERATED MODEL</ByFederatedModel>
+		<ByFinalFM>C:\Users\ljinkim\Downloads\_Temp\Temp Build Folder\20-Federated-Model\204-NWDs\FEDERATED MODEL</ByFinalFM>
+	</TempBuildFolder>
+	<MainBuildFolder>C:\Users\ljinkim\Downloads\_Temp\BIM Machine\20-Federated-Model\204-NWDs</MainBuildFolder>
+	<TempNWDFolder>C:\Users\ljinkim\Downloads\_Temp\Temp Build Folder\20-Federated-Model\204-NWDs</TempNWDFolder>
+	<MainNWCFolder>
+		<NWC_ALL>C:\Users\ljinkim\Downloads\_Temp\BIM Machine\20-Federated-Model\203-NWCs</NWC_ALL>
+		<NWC_CM>C:\Users\ljinkim\Downloads\_Temp\BIM Machine\20-Federated-Model\203-NWCs\CM-NWCS</NWC_CM>
+		<NWC_DM>C:\Users\ljinkim\Downloads\_Temp\BIM Machine\20-Federated-Model\203-NWCs\DM-NWCS</NWC_DM>
+		<NWC_EM>C:\Users\ljinkim\Downloads\_Temp\BIM Machine\20-Federated-Model\203-NWCs\EM-NWCS</NWC_EM>
+	</MainNWCFolder>
+	<LogFolder>C:\Users\ljinkim\Downloads\_Temp\Temp Build Folder\20-Federated-Model\_Logs</LogFolder>
+	<TempNWCFolder>
+		<NWC_ALL>C:\Users\ljinkim\Downloads\_Temp\Temp Build Folder\20-Federated-Model\203-NWCs</NWC_ALL>
+		<NWC_CM>C:\Users\ljinkim\Downloads\_Temp\Temp Build Folder\20-Federated-Model\203-NWCs\CM-NWCS</NWC_CM>
+		<NWC_DM>C:\Users\ljinkim\Downloads\_Temp\Temp Build Folder\20-Federated-Model\203-NWCs\DM-NWCS</NWC_DM>
+		<NWC_EM>C:\Users\ljinkim\Downloads\_Temp\Temp Build Folder\20-Federated-Model\203-NWCs\EM-NWCS</NWC_EM>
+	</TempNWCFolder>
+	<BackupLocation>C:\Users\ljinkim\Downloads\_Temp\Temp Build Folder\20-Federated-Model\203-NWCs\_Archived</BackupLocation>
+	<RejectedLocation>C:\Users\ljinkim\Downloads\_Temp\Temp Build Folder\20-Federated-Model\203-NWCs\_Rejected</RejectedLocation>
+	<NWFFolderAll>C:\Users\ljinkim\Downloads\_Temp\Temp Build Folder\20-Federated-Model\204-NWDs\_NWF\_NWFs</NWFFolderAll>
+	<NWFFolderByLevel>C:\Users\ljinkim\Downloads\_Temp\Temp Build Folder\20-Federated-Model\204-NWDs\_NWF\_NWFs\1 By Level</NWFFolderByLevel>
+	<NWFFolderByBuilding>C:\Users\ljinkim\Downloads\_Temp\Temp Build Folder\20-Federated-Model\204-NWDs\_NWF\_NWFs\2 By Building</NWFFolderByBuilding>
+	<NWFFolderByOverall>C:\Users\ljinkim\Downloads\_Temp\Temp Build Folder\20-Federated-Model\204-NWDs\_NWF\_NWFs\3 By Overall</NWFFolderByOverall>
+	<NWFFolderByFM>C:\Users\ljinkim\Downloads\_Temp\Temp Build Folder\20-Federated-Model\204-NWDs\_NWF\_NWFs\FEDERATED MODEL</NWFFolderByFM>
+	
+</Config>
