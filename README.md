@@ -1,2 +1,2 @@
 # Federated-Model-Build-Automation
-Federated Model Build automation for the Intel Pelican Project
+Using Powershell to automate the process of model federation (NWF and NWD files) for the Intel Pelican Project.
