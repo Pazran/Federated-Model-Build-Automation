@@ -1,0 +1,4 @@
+Regex pattern to search for a line of code and delete the line
+
+^(.*?)COMPLETED:(.*?)$\n
+^(.*?)"ERROR:(.*?)$\n

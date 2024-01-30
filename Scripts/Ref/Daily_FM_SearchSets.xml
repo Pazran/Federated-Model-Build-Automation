@@ -1,0 +1,3105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<exchange xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://download.autodesk.com/us/navisworks/schemas/nw-exchange-12.0.xsd" units="ft" filename="" filepath="">
+  <selectionsets>
+    <viewfolder name="Folder" guid="ab4a5cdb-bd15-44a2-b59b-5d4a0d024c47">
+      <selectionset name="ALL DM" guid="76efce6a-a94d-4745-998a-9de58749902b">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="contains" flags="10">
+              <property>
+                <name internal="LcOaPartitionSourceFilename">Source File Name</name>
+              </property>
+              <value>
+                <data type="wstring">-DM</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="S0- ALL STRUCTURE MODEL " guid="3add1618-a9c2-4579-ad39-49ff88f2f392">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="contains" flags="10">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">-S0-</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="A0-ALL ARCHI MODEL " guid="c6d14790-1c87-45bc-acc1-224cb008f31e">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="contains" flags="10">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">-A0-</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+    </viewfolder>
+    <viewfolder name="PACKAGE NUMBER SEARCH SET" guid="e6e098c3-c871-422d-afcf-02f9da3a4862">
+      <selectionset name="C43-NIL" guid="170a4881-6a1b-4ed1-8346-1307a68fc734">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;C43&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F02C-NIL" guid="0924f31c-ad23-4c2a-b36c-be34d0d8d22e">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F02C&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F02C16-NIL" guid="7d31f049-4d80-4cdd-ae21-09b9dbb8a38a">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F02C16&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F02C18-NIL" guid="f87b2931-2314-454e-8aef-b4e13eb2a621">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F02C18&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F02C19-NIL" guid="70ae17f3-c5f4-425f-ac7e-bf1c1b9ceb55">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F02C19&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F02C15-ATC" guid="e246d70b-d1b4-473a-8ebd-5846e82a07b8">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F02C15&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F02C17-THF" guid="66252692-04c0-46fe-872f-3fb29474b873">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F02C17&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F02C20-PWR" guid="fc028f68-dc2a-4104-9803-d3748bf88aec">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F02C20&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F04A-TRA" guid="74c95e21-d244-48c5-9dcc-3b601b2cf69d">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F04A&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F21A03-ENA" guid="f8c48d3a-6fdf-4816-aa69-a9ad61d9e890">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_1660848">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F21A03&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F06A01-XYT" guid="2ec5236b-d2f1-490e-b2cc-d38bf1da0013">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F06A01&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F07B-ENV" guid="7a123fed-e989-482a-8d9f-2d5639c566c5">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F07B&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F08C04-KIV" guid="44eb0e26-def9-4674-b11a-736b1221c856">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F08C04&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F18A01-ARR" guid="707f1b91-5952-4eab-854a-4ccfd2f6d422">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F18A01&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F23A02-KIV" guid="6bf36f4e-db1d-47ef-ac2e-d3b366e3decc">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F23A02&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F24B01-GOF" guid="8146e25f-1dcb-4dc6-99de-f04786378fec">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F24B01&gt;</data>
+              </value>
+            </condition>
+            <condition test="equals" flags="74">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">F24B01</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F24B-KIV" guid="d82d3021-50a4-4832-bd00-10987ccb6380">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F24B&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F28A-NTK" guid="d6f31e92-6d35-4074-a28d-cfbbebd4d866">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F28A&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F44-KIV" guid="8c11a7c8-cf85-44ce-a346-4cf1ecfd918a">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F44&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F08B-NIL" guid="da06bf70-89b3-4c44-8db9-3849d429cdd7">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">F08B</data>
+              </value>
+            </condition>
+            <condition test="equals" flags="74">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_2406138">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F08B&gt;</data>
+              </value>
+            </condition>
+            <condition test="equals" flags="74">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_2406138">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">F08B</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="C10C-STE" guid="b000d26c-93c0-436b-a409-b160f9aeb421">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_759108">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">C10C</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F06B-TRA" guid="6765febf-247c-4c88-99b8-f11858c7c9cc">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_1495738">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F06B&gt;</data>
+              </value>
+            </condition>
+            <condition test="equals" flags="74">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_2406138">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F06B&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F17-ROC" guid="356243ad-db06-454a-9f3e-2e19c68499ad">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_1521792">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F17&gt;</data>
+              </value>
+            </condition>
+            <condition test="equals" flags="74">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F17&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F16D-EGS" guid="79a2e43d-8296-41b6-bd0a-4a2367968cc1">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_1521792">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F16D&gt;</data>
+              </value>
+            </condition>
+            <condition test="equals" flags="74">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_1521905">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F16D&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F22A-ALL" guid="a0bf2607-4118-47bb-91bd-3cf78de59f1f">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_1438714">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F22A&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="C42C-YOP" guid="dc2c09b8-2f95-4cdb-8055-b028038ec8b3">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_1438598">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;C42C&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F18-UNA" guid="5403540a-2404-473a-a649-50abef0fdf69">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_1521792">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F18&gt;</data>
+              </value>
+            </condition>
+            <condition test="equals" flags="74">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F18&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F21B03-DHP" guid="89fa9f62-8694-4213-98ba-5dddcd9b9b31">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_1660848">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F21B03&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F26E-CLT" guid="a9515add-b359-4da1-877f-ac7d64593fb2">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_1521792">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F26E&gt;</data>
+              </value>
+            </condition>
+            <condition test="equals" flags="74">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_1523559">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F26E&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F07C-P3T" guid="e989006f-2e90-4362-9bb4-c79e8c7c40d5">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_1438052">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F07C&gt;</data>
+              </value>
+            </condition>
+            <condition test="equals" flags="74">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F07C&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F26A-WIN" guid="8ed27dcf-6d36-4979-ab2a-d3060a6c386a">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_1707843">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F26A&gt;</data>
+              </value>
+            </condition>
+            <condition test="equals" flags="74">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F26A&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="C42C-YOP" guid="66597e3a-de5b-428b-ba2a-8d5eacc379e7">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;C42C&gt;</data>
+              </value>
+            </condition>
+            <condition test="equals" flags="74">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_1438714">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;C42C&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F08A-CAV" guid="4f5bbbc5-fca3-450c-bf7d-d0a953b99376">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F08A&gt;</data>
+              </value>
+            </condition>
+            <condition test="equals" flags="74">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_2406138">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F08A&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F08C-PCE" guid="5d62fce5-2248-4e54-b6e6-2e679edeba2a">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F08C&gt;</data>
+              </value>
+            </condition>
+            <condition test="equals" flags="74">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_2406138">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F08C&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F12B-SRS" guid="1637c9da-3b0e-4719-b194-a26684f08648">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F12B&gt;</data>
+              </value>
+            </condition>
+            <condition test="equals" flags="74">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">F12B</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F16A-SEM" guid="30c69204-5cb2-4c02-99eb-09954b057c8b">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F16A&gt;</data>
+              </value>
+            </condition>
+            <condition test="equals" flags="74">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">F16A</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F46-XYT" guid="c8d6c60a-a535-45b8-b1ef-3d6335d5348c">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F46&gt;</data>
+              </value>
+            </condition>
+            <condition test="equals" flags="74">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">F46</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F45-ECE" guid="53631148-3066-41f3-aa32-e73aa62acd54">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F45&gt;</data>
+              </value>
+            </condition>
+            <condition test="equals" flags="74">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_1438598">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F45&gt;</data>
+              </value>
+            </condition>
+            <condition test="equals" flags="74">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_1438714">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F45&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F02B-PCE" guid="1d64b73c-1419-42e7-8c6e-72aab18d0175">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_1495738">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F02B&gt;</data>
+              </value>
+            </condition>
+            <condition test="equals" flags="74">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_2406138">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F02B&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F19-DLT" guid="0e545997-c645-427b-bf7f-1e847d106fd2">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_1521792">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F19&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F22C-KSM" guid="5f792720-1ac4-437d-a31f-4dcbb12982b7">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_1521792">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F22C&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F26F-SPP" guid="bce52ddb-d9a7-4aef-8b84-61ebcabf9d69">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_1521792">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F26F&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="C42A-GRS" guid="c8286874-8938-4f5a-8165-6939823c94c2">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;C42A&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F02A-DMG" guid="28ea04b3-5277-40fb-bd6c-13f6bda3994e">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F02A&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F02C01-LIB" guid="93e98f36-8559-488b-8965-63243b2ce10c">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F02C01&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F02C02-LIB" guid="b2a0d34e-4830-479d-ad0e-2967c11c92b0">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F02C02&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F02C05-KNH" guid="cf2fc517-7a92-4bc2-893b-927b78e647cc">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F02C05&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F09A-AIE" guid="e1ab5884-383c-46cc-bd8f-f68f589a6eec">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F09A&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F11C-CAS" guid="88eac5c5-5048-4f4f-8b79-7245716139f5">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F11C&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F16B-SEM" guid="8aad5df6-4a92-4add-9c02-923452369847">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F16B&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F16B01-CHU" guid="5a71df82-cf37-4713-81ff-2a3904d02fe3">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F16B01&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F21A01-ATC" guid="7c6ecdc2-d034-4595-9a7c-70b3c4bd08e6">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F21A01&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F21A02-AGM" guid="fd089a8c-a5f7-4e1f-9d7c-81ddfcfd1fed">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F21A02&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F21B01-KET" guid="28ca1d56-6a90-4241-a2b0-c58dfb861e9d">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F21B01&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F23A01-KSM" guid="d11c0c42-1e68-4e04-abf6-153f46b40513">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F23A01&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F24A-SUE" guid="11bdc887-f1dd-4a31-88b8-55dd93795367">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F24A&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F24C-EQA" guid="c9ad17d6-e147-425b-8224-487f0fe8de61">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F24C&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F26B-WIN" guid="677d196a-e340-42de-bc4b-d23b5972d70a">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F26B&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F29A-TKT" guid="090d1c58-59e0-436f-bd0a-79b11990ee9b">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F29A&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F43-XYT" guid="8059701b-8312-4f7f-b846-31b3ba19ccfe">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F43&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F47-DMG" guid="f32652fe-4480-443d-9bfe-731e6a9f1b0b">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">&lt;F47&gt;</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="F24B02-XYT" guid="6a258ea7-2f06-4381-9f7f-104908ba7773">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="equals" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_INT_PKG_Name_PG_IDENTITY_DATA">INT_PKG_Name</name>
+              </property>
+              <value>
+                <data type="wstring">F24B02</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+    </viewfolder>
+    <viewfolder name="Zones &amp; Clearances" guid="4ae129e5-de97-4461-bd4c-ceeed8ea75c6">
+      <selectionset name="No Fly Clearance Zones" guid="4cecaefe-0a62-4f5d-beca-ebfbe60b58f2">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="contains" flags="90">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">No-FLY-Zone under RMF</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="90">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">No-FLY-Zone under RMF_CLS60-T21</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="90">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">No-FLY-Zone under RMF_L4</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="90">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Stocker Pedestal No Fly Zone</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="_Zones &amp; Clearances" guid="a00fc8da-3e35-4578-88ef-0cbaf144b61a">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="contains" flags="10">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Access Space</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Access/Clearance Zone</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">ARB_Clearance</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">A_Clearance</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">cleance zone</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">CLEARANCE</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance 4x7.8x14m(H)</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance 4x7x10m(H)</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance Areas</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance Box</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance Space</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance space for PCD TVB</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance Space Future</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance Space Max fit</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance Space Mx Fit</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">CLEARANCE ZONE</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance zone</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">clearance zone</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance Zone</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance Zone 2000x800x2000</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance Zone 2000x1000x2000</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance-M</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">ClearanceText</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">clearence</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearence Space</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearence space</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearence Space(1)</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearence Space(FUTURE)</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearence Space(MAX FIT)</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearnce</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Electrical Clearance</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Electrical Clearance Area</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">electrical Clearance Zone</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Electrical Clearance Zone</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Equipment Clearence 1</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Equipment Clearence Future</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Equipment Clearence1</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Equipment Move in Move out path</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Equipment Move in Move out path1</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Equipment Move in Move out path2</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Equipment Move in Move out path3</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Equipment Move in Move out space</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">EQUIPMENT MOVE-IN F3M13</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">EQUIPMENT MOVE-IN F3013</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Maintainance Access Zone</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Maintenance Space</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">MAINTENANCE ZONE 2</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">MAINTGNACE ZONE</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">MANITENANCE ZONE</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Move  in &amp; Move out</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Move in &amp; Move out</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">move in &amp; move out</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Move In Move Out Clearence Space</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Move in Move out Space</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Move in Move out space in Feed Room</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Move in Move out Space1</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Move in space</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">MOVE-IN &amp; MOVE-OUT</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">MOVE-IN &amp; MOVE-OUT SPACE</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Movi in &amp; Move out</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">No-FLY-Zone under RMF</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">No-FLY-Zone under RMF_CLS60-T21</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">No-FLY-Zone under RMF_L4</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">RIO Clearance Area</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">RIO Clearance Space</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Schneider Electric - Clearance</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Stocker Pedestal No Fly Zone</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">TVB MAXFIT CLEARANCE</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">TVB01 Clearance</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Door Clearance Zone</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="Move In/Out Clearance Zones" guid="49e7f92d-4aa0-4ac8-8385-c719899bc089">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Equipment Move in Move out path</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Equipment Move in Move out path1</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Equipment Move in Move out path2</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Equipment Move in Move out path3</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Equipment Move in Move out space</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">EQUIPMENT MOVE-IN F3M13</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">EQUIPMENT MOVE-IN F3013</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Move  in &amp; Move out</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Move in &amp; Move out</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">move in &amp; move out</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Move In Move Out Clearence Space</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Move in Move out Space</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Move in Move out space in Feed Room</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Move in Move out Space1</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Move in space</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">MOVE-IN &amp; MOVE-OUT</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">MOVE-IN &amp; MOVE-OUT SPACE</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Movi in &amp; Move out</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="Maintenance Zones" guid="eb1a78e0-8904-4893-ab3b-ab76177e635d">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Maintainance Access Zone</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Maintenance Space</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">MAINTENANCE ZONE 2</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">MAINTGNACE ZONE</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">MANITENANCE ZONE</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="_Clearance" guid="3ca45488-251b-45f7-a3a9-e0a28b3ba094">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="contains" flags="10">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Access Space</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Access/Clearance Zone</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">ARB_Clearance</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">A_Clearance</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">cleance zone</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">CLEARANCE</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance 4x7.8x14m(H)</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance 4x7x10m(H)</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance Areas</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance Box</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance Space</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance space for PCD TVB</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance Space Future</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance Space Max fit</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance Space Mx Fit</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">CLEARANCE ZONE</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance zone</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">clearance zone</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance Zone</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance Zone 2000x800x2000</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance Zone 2000x1000x2000</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearance-M</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">ClearanceText</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">clearence</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearence Space</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearence space</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearence Space(1)</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearence Space(FUTURE)</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearence Space(MAX FIT)</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Clearnce</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Electrical Clearance</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Electrical Clearance Area</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">electrical Clearance Zone</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Electrical Clearance Zone</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Equipment Clearence 1</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Equipment Clearence Future</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Equipment Clearence1</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Equipment Move in Move out path</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Equipment Move in Move out path1</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Equipment Move in Move out path2</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Equipment Move in Move out path3</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Equipment Move in Move out space</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">EQUIPMENT MOVE-IN F3M13</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">EQUIPMENT MOVE-IN F3013</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Maintainance Access Zone</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Maintenance Space</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">MAINTENANCE ZONE 2</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">MAINTGNACE ZONE</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">MANITENANCE ZONE</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">RIO Clearance Area</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">RIO Clearance Space</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">Schneider Electric - Clearance</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">TVB MAXFIT CLEARANCE</data>
+              </value>
+            </condition>
+            <condition test="contains" flags="74">
+              <property>
+                <name internal="LcOaSceneBaseUserName">Name</name>
+              </property>
+              <value>
+                <data type="wstring">TVB01 Clearance</data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+    </viewfolder>
+    <viewfolder name="Equipment Tag ID" guid="f04c9eae-543a-4241-9d27-4f714360f79b">
+      <selectionset name="ARCH_EQUIPMENT TAG ID" guid="08578b81-a294-4038-9c6f-66cb26fcd87a">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="prop" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_6381508">ex_ARCH_Equipment Tagging ID</name>
+              </property>
+              <value>
+                <data type="wstring"></data>
+              </value>
+            </condition>
+            <condition test="prop" flags="74">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_4505068">ex_ARCH_Equipment Tagging ID</name>
+              </property>
+              <value>
+                <data type="wstring"></data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="ARCH(CR)_EQUIPMENT TAG ID" guid="2f39aad4-5da6-46a1-b102-cf35aa0af29b">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="prop" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_ex_ARCH(CR)_Equipment Tagging ID_PG_IDENTITY_DATA">ex_ARCH(CR)_Equipment Tagging ID</name>
+              </property>
+              <value>
+                <data type="wstring"></data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="ELEC_EQUIPMENT TAG ID" guid="3637590a-8afd-4eb5-90e0-fde6078c532a">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="prop" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_1555126">ex_ELEC_Equipment Tagging ID</name>
+              </property>
+              <value>
+                <data type="wstring"></data>
+              </value>
+            </condition>
+            <condition test="prop" flags="74">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_1636818">ex_ELEC_Equipment Tagging ID</name>
+              </property>
+              <value>
+                <data type="wstring"></data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="I&amp;C_EQUIPMENT TAG ID" guid="6e73dad0-1a3f-40ea-85b8-b64389dd2ae3">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="prop" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_1584801">ex_I&amp;C_Equipment Tagging ID</name>
+              </property>
+              <value>
+                <data type="wstring"></data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="LSS_EQUIPMENT TAG ID" guid="903df2ea-06ab-4744-a277-8deea967ffcf">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="prop" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_1760502">ex_LSS_Equipment Tagging ID</name>
+              </property>
+              <value>
+                <data type="wstring"></data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="MECH_EQUIPMENT TAG ID" guid="fe33577b-be4b-40d8-8251-2992a08e2c8c">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="prop" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_2174413">ex_MECH_Equipment Tagging ID</name>
+              </property>
+              <value>
+                <data type="wstring"></data>
+              </value>
+            </condition>
+            <condition test="prop" flags="74">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_2109488">ex_MECH_Equipment Tagging ID</name>
+              </property>
+              <value>
+                <data type="wstring"></data>
+              </value>
+            </condition>
+            <condition test="prop" flags="74">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_2195328">ex_MECH_Equipment Tagging ID</name>
+              </property>
+              <value>
+                <data type="wstring"></data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="PSSS_EQUIPMENT TAG ID" guid="61877a3e-1c59-42bb-a1cf-4741c97962ac">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="prop" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_2450784">ex_PSSS_Equipment Tagging ID</name>
+              </property>
+              <value>
+                <data type="wstring"></data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+      <selectionset name="TELECOM_EQUIPMENT TAG ID" guid="d101f236-808a-40f7-8f8e-132db60b904b">
+        <findspec mode="all" disjoint="0">
+          <conditions>
+            <condition test="prop" flags="10">
+              <category>
+                <name internal="LcRevitData_Element">Element</name>
+              </category>
+              <property>
+                <name internal="lcldrevit_parameter_2823887">ex_TELECOM_Equipment Tagging ID</name>
+              </property>
+              <value>
+                <data type="wstring"></data>
+              </value>
+            </condition>
+          </conditions>
+          <locator>/</locator>
+        </findspec>
+      </selectionset>
+    </viewfolder>
+    <selectionset name="INT-FUTR_UNDERFINED" guid="46c9f552-e0a1-411f-8616-24dbd918ecfe">
+      <findspec mode="all" disjoint="0">
+        <conditions>
+          <condition test="no_prop" flags="10">
+            <category>
+              <name internal="LcRevitData_Element">Element</name>
+            </category>
+            <property>
+              <name internal="lcldrevit_parameter_INT_FUTR_PG_IDENTITY_DATA">INT_FUTR</name>
+            </property>
+            <value>
+              <data type="bool">false</data>
+            </value>
+          </condition>
+          <condition test="no_prop" flags="74">
+            <category>
+              <name internal="LcRevitData_Element">Element</name>
+            </category>
+            <property>
+              <name internal="lcldrevit_parameter_1438599">INT_FUTR</name>
+            </property>
+            <value>
+              <data type="bool">false</data>
+            </value>
+          </condition>
+          <condition test="no_prop" flags="74">
+            <category>
+              <name internal="LcRevitData_Element">Element</name>
+            </category>
+            <property>
+              <name internal="lcldrevit_parameter_1438097">INT_FUTR</name>
+            </property>
+            <value>
+              <data type="bool">false</data>
+            </value>
+          </condition>
+          <condition test="no_prop" flags="74">
+            <category>
+              <name internal="LcRevitData_Element">Element</name>
+            </category>
+            <property>
+              <name internal="lcldrevit_parameter_1521906">INT_FUTR</name>
+            </property>
+            <value>
+              <data type="bool">false</data>
+            </value>
+          </condition>
+          <condition test="no_prop" flags="74">
+            <category>
+              <name internal="LcRevitData_Element">Element</name>
+            </category>
+            <property>
+              <name internal="lcldrevit_parameter_1439827">INT_FUTR</name>
+            </property>
+            <value>
+              <data type="bool">false</data>
+            </value>
+          </condition>
+          <condition test="no_prop" flags="74">
+            <category>
+              <name internal="LcRevitData_Element">Element</name>
+            </category>
+            <property>
+              <name internal="lcldrevit_parameter_1741199">INT_FUTR</name>
+            </property>
+            <value>
+              <data type="bool">false</data>
+            </value>
+          </condition>
+          <condition test="no_prop" flags="74">
+            <category>
+              <name internal="LcRevitData_Element">Element</name>
+            </category>
+            <property>
+              <name internal="lcldrevit_parameter_1438715">INT_FUTR</name>
+            </property>
+            <value>
+              <data type="bool">false</data>
+            </value>
+          </condition>
+          <condition test="no_prop" flags="74">
+            <category>
+              <name internal="LcRevitData_Element">Element</name>
+            </category>
+            <property>
+              <name internal="lcldrevit_parameter_2221191">INT_FUTR</name>
+            </property>
+            <value>
+              <data type="bool">false</data>
+            </value>
+          </condition>
+          <condition test="no_prop" flags="74">
+            <category>
+              <name internal="LcRevitData_Element">Element</name>
+            </category>
+            <property>
+              <name internal="lcldrevit_parameter_1707844">INT_FUTR</name>
+            </property>
+            <value>
+              <data type="bool">false</data>
+            </value>
+          </condition>
+          <condition test="no_prop" flags="74">
+            <category>
+              <name internal="LcRevitData_Element">Element</name>
+            </category>
+            <property>
+              <name internal="lcldrevit_parameter_2406139">INT_FUTR</name>
+            </property>
+            <value>
+              <data type="bool">false</data>
+            </value>
+          </condition>
+          <condition test="no_prop" flags="74">
+            <category>
+              <name internal="LcRevitData_Element">Element</name>
+            </category>
+            <property>
+              <name internal="lcldrevit_parameter_1523372">INT_FUTR</name>
+            </property>
+            <value>
+              <data type="bool">false</data>
+            </value>
+          </condition>
+          <condition test="no_prop" flags="74">
+            <category>
+              <name internal="LcRevitData_Element">Element</name>
+            </category>
+            <property>
+              <name internal="lcldrevit_parameter_1521793">INT_FUTR</name>
+            </property>
+            <value>
+              <data type="bool">false</data>
+            </value>
+          </condition>
+          <condition test="no_prop" flags="74">
+            <category>
+              <name internal="LcRevitData_Element">Element</name>
+            </category>
+            <property>
+              <name internal="lcldrevit_parameter_1495739">INT_FUTR</name>
+            </property>
+            <value>
+              <data type="bool">false</data>
+            </value>
+          </condition>
+          <condition test="no_prop" flags="74">
+            <category>
+              <name internal="LcRevitData_Element">Element</name>
+            </category>
+            <property>
+              <name internal="lcldrevit_parameter_1659251">INT_FUTR</name>
+            </property>
+            <value>
+              <data type="bool">false</data>
+            </value>
+          </condition>
+        </conditions>
+        <locator>/</locator>
+      </findspec>
+    </selectionset>
+    <selectionset name="INT_FUTR_YES" guid="6aa436b4-e970-47c5-9c88-da12f3e42173">
+      <findspec mode="all" disjoint="0">
+        <conditions>
+          <condition test="equals" flags="10">
+            <category>
+              <name internal="LcRevitData_Element">Element</name>
+            </category>
+            <property>
+              <name internal="lcldrevit_parameter_INT_FUTR_PG_IDENTITY_DATA">INT_FUTR</name>
+            </property>
+            <value>
+              <data type="bool">true</data>
+            </value>
+          </condition>
+          <condition test="equals" flags="74">
+            <category>
+              <name internal="LcRevitData_Element">Element</name>
+            </category>
+            <property>
+              <name internal="lcldrevit_parameter_1438097">INT_FUTR</name>
+            </property>
+            <value>
+              <data type="bool">true</data>
+            </value>
+          </condition>
+          <condition test="equals" flags="74">
+            <category>
+              <name internal="LcRevitData_Element">Element</name>
+            </category>
+            <property>
+              <name internal="lcldrevit_parameter_1521906">INT_FUTR</name>
+            </property>
+            <value>
+              <data type="bool">true</data>
+            </value>
+          </condition>
+          <condition test="equals" flags="74">
+            <category>
+              <name internal="LcRevitData_Element">Element</name>
+            </category>
+            <property>
+              <name internal="lcldrevit_parameter_1439827">INT_FUTR</name>
+            </property>
+            <value>
+              <data type="bool">true</data>
+            </value>
+          </condition>
+          <condition test="equals" flags="74">
+            <category>
+              <name internal="LcRevitData_Element">Element</name>
+            </category>
+            <property>
+              <name internal="lcldrevit_parameter_1707844">INT_FUTR</name>
+            </property>
+            <value>
+              <data type="bool">true</data>
+            </value>
+          </condition>
+          <condition test="equals" flags="74">
+            <category>
+              <name internal="LcRevitData_Element">Element</name>
+            </category>
+            <property>
+              <name internal="lcldrevit_parameter_2406139">INT_FUTR</name>
+            </property>
+            <value>
+              <data type="bool">true</data>
+            </value>
+          </condition>
+          <condition test="equals" flags="74">
+            <category>
+              <name internal="LcRevitData_Element">Element</name>
+            </category>
+            <property>
+              <name internal="lcldrevit_parameter_1521793">INT_FUTR</name>
+            </property>
+            <value>
+              <data type="bool">true</data>
+            </value>
+          </condition>
+          <condition test="equals" flags="74">
+            <category>
+              <name internal="LcRevitData_Element">Element</name>
+            </category>
+            <property>
+              <name internal="lcldrevit_parameter_1659251">INT_FUTR</name>
+            </property>
+            <value>
+              <data type="bool">true</data>
+            </value>
+          </condition>
+        </conditions>
+        <locator>/</locator>
+      </findspec>
+    </selectionset>
+    <selectionset name="Blow Down 1" guid="d2a56aa9-2d90-4466-8dcd-d073f2709631">
+      <findspec mode="all" disjoint="0">
+        <conditions>
+          <condition test="contains" flags="10">
+            <category>
+              <name internal="LcRevitData_Element">Element</name>
+            </category>
+            <property>
+              <name internal="lcldrevit_parameter_ex_BLOWDOWN SCHEDULE">ex_BLOWDOWN SCHEDULE</name>
+            </property>
+            <value>
+              <data type="wstring">Blow Down 1</data>
+            </value>
+          </condition>
+        </conditions>
+        <locator>/</locator>
+      </findspec>
+    </selectionset>
+  </selectionsets>
+</exchange>

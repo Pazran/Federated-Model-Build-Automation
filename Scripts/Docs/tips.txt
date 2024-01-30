@@ -1,0 +1,6 @@
+To determine a given cmdlet's output-object types:
+
+Run, e.g., (Get-Command Get-ChildItem).OutputType
+If that doesn't work, or to see what types are output for a specific invocation, use
+Get-ChildItem | Get-Member.
+Get-Help -Full Get-ChildItem should show an OUTPUTS section as well, as does the online help, though not that in the case of Get-ChildItem it is less specific, since Get-ChildItem also works with providers other than the filesystem.
