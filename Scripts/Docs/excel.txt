@@ -1,0 +1,11 @@
+$file = 'C:\Scripts\Spreadsheet.xlsx'
+$x1 = New-Object -ComObject Excel.Application
+$x1.Visible = $false
+$enddate = (Get-Date).tostring("dd-MM-yy")
+$filename = 'C:\Scripts\Spreadsheet ' + $enddate + '.xlsx'
+$wb = $x1.workbooks.Open($file)
+$wb.RefreshAll()
+$wb.SaveAs($filename)
+$wb.Close()
+$x1.Quit()
+Remove-Variable wb,x1
