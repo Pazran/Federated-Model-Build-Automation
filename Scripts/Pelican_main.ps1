@@ -7,6 +7,103 @@
 
 . .\Config.ps1
 
+WriteLog-Full "Running build on local Computer: $env:computername"
+
+#Backup the previous NWCs folder
+try{
+    WriteLog-Full "Backup previous NWCs folder: $TempNWC_All"
+    $i = 0
+    $Files = Get-ChildItem $TempNWC_All -Exclude "_Archived","_Rejected","test","_Retired" | Get-ChildItem -Filter "*.nwc"  -Recurse
+    $FileDest = "$BackupDirectory\$((Get-Date).ToString('yyyy-MM-dd'))"
+    If(!(Test-Path -Path $FileDest)){
+        ForEach($File in $Files){
+            $i = $i+1
+            $FFileName = "$FileDest\{0}" -f $File.Name
+            if ($File.Name -like "*-CM*")
+                {
+                    $FFileName = "$FileDest\CM-NWCS\{0}" -f $File.Name
+                }
+            if ($File.Name -like "*-DM*")
+                {
+                    $FFileName = "$FileDest\DM-NWCS\{0}" -f $File.Name
+                }
+            if ($File.Name -like "*-EM*")
+                {
+                    $FFileName = "$FileDest\EM-NWCS\{0}" -f $File.Name
+                }
+            New-Item -ItemType File -Path $FFileName -Force
+            Copy-Item -Path $File.FullName -Destination $FFileName -Force
+            Write-Progress -Activity ("Backing up previous NWC files {0}/{1} ({2})..." -f $i, $Files.count, $File.Name) -Status "Progress: " -PercentComplete (($i/$Files.count)*100)
+            }
+        }
+    else{
+        WriteLog-Full ("Backup folder already exist :{0}" -f $((Get-Date).ToString('yyyy-MM-dd')))
+        }
+    }
+catch{
+    $BackupException = $_.Exception.Message
+    WriteLog-Full "$BackupException" -Type ERROR
+    $BuildSuccess=$false
+    }
+
+#Copy latest NWCs into the temporary build folder
+try{
+    WriteLog-Full "Copy UPDATED and NEW NWCs into temporary build folder"
+    $i = 0
+    #Search only NWCs with the last modified date is a day before the script is run
+    $Files = Get-ChildItem $MainNWC_All -Exclude "_Archived","_Rejected","test","_Retired","_New.txt" | Get-ChildItem -Recurse -Filter "*.nwc" | Where-Object { $_.LastWriteTime -gt $(((Get-Date).AddDays(-1)).ToString('yyyy-MM-dd')) }
+    ForEach($File in $Files){
+        $i = $i+1
+        $FFileName = "$TempNWC_All\{0}" -f $File.Name
+        if ($File.Name -like "*-CM*")
+            {
+                $FFileName = "$TempNWC_All\CM-NWCS\{0}" -f $File.Name
+            }
+        if ($File.Name -like "*-DM*")
+            {
+                $FFileName = "$TempNWC_All\DM-NWCS\{0}" -f $File.Name
+            }
+        if ($File.Name -like "*-EM*")
+            {
+                $FFileName = "$TempNWC_All\EM-NWCS\{0}" -f $File.Name
+            }
+        New-Item -ItemType File -Path $FFileName -Force
+        Copy-Item -Path $File.FullName -Destination $FFileName -Force
+        Write-Progress -Activity ("Copy latest NWC files {0}/{1} ({2})..." -f $i, $Files.count, $File.Name) -Status "Progress: " -PercentComplete (($i/$Files.count)*100)
+        }
+}
+catch{
+    $CopyNWCException = $_.Exception.Message
+    WriteLog-Full "$CopyNWCException" -Type ERROR
+    $BuildSuccess=$false
+}
+
+#Move Rejected models
+try{
+    #Regex for correct file naming
+    $NPattern = "^XPG\w{2,3}-\w{3,4}-\d{3}-.{2}-\w{5}-\w{3}-(CM|DM|EM)(\.|[-_]ROOM\.|[-_]MAXFIT\.|[-_]AMHS\.|-ST\.)nwc$"
+    $i = 0
+    $Files = Get-ChildItem $TempNWC_All -Exclude "_Archived","_Rejected","_Retired","_New.txt" | Get-ChildItem  -Recurse -FIlter "*.nwc"
+    New-Item -ItemType Directory -Path $RejectedFolder -Force
+    $FList = $Files -notmatch $NPattern
+    If($Flist){
+        WriteLog-Full ("Moving {0} rejected model into: {1}" -f $Flist.count, $RejectedFolder)
+        ForEach($File in $FList){
+            $i = $i+1
+            Write-Progress -Activity ("Moving rejected models {0}/{1} ({2})..." -f $i, $Flist.count, $File.Name) -Status "Progress: " -PercentComplete (($i/$Flist.count)*100)
+            $FFileName = "$RejectedFolder\{0}" -f $File.Name
+            New-Item -ItemType File -Path $FFileName -Force
+            Move-Item -Path $File.FullName -Destination $FFileName -Force
+            WriteLog-Full ("Rejected model: {0}" -f $File.Name)
+                }
+        }
+    }
+catch{
+    $Exception = $_.Exception.Message
+    WriteLog-Full "$Exception" -Type ERROR
+    $BuildSuccess=$false
+    }
+
 ################ NWF BUILD REGION START ################
 
 $F26FMlist = "F26_APB1-FM","F26_APB2-FM","F26_FAB-FM","F26_BCS-FM","LK1-FM"
@@ -415,11 +512,31 @@ else{
 
 #Update all nwf searchsets and viewpoints
 $NWFList = Get-ChildItem $NWFFolderAll -Exclude "_Archived","_Rejected","test","_Retired","1 By Level" | Get-ChildItem -Recurse -Filter "*.nwf" | Where-Object { $_.LastWriteTime -gt $DateStarted }
+$NWFList_Level = Get-ChildItem $NWFFolderByLevel | Get-ChildItem -Recurse -Filter "*.nwf" | Where-Object { $_.LastWriteTime -gt $DateStarted }
 Initialize-NavisworksApi
 $napiDC = [Autodesk.Navisworks.Api.Controls.DocumentControl]::new()
 $i = 0
 WriteLog-Full "Start updating search sets and viewpoints..."
 
+#By Level
+try{
+    ForEach($nwf in $NWFList_Level){
+        $i = $i+1
+        Write-Progress -Activity "Cleaning viewpoints for level models..." -Status ("Updating file: {0}" -f $nwf.Name) -PercentComplete (($i/$NWFList_Level.count)*100)
+        WriteLog-Full ("Updating file: {0}" -f $nwf)
+        $napiDC.Document.TryOpenFile($nwf.FullName)
+        $napiDC.Document.SavedViewpoints.Clear()
+        $napiDC.Document.SaveFile($nwf.FullName)
+        }
+ }
+
+catch{
+    $BuildException = $_.Exception.Message
+    WriteLog-Full $BuildException -Type ERROR
+    $BuildSuccess = $false
+    }
+
+#All other
 try{
     if($napiDC.Document.TryOpenFile($SelectionVPfile)) {
         ForEach($nwf in $NWFList){

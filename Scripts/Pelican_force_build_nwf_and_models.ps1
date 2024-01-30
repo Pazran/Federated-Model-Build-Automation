@@ -1957,35 +1957,63 @@ catch{
  }
 
 $NWFList = Get-ChildItem $NWFFolderAll -Exclude "_Archived","_Rejected","test","1 By Level" | Get-ChildItem -Recurse -Filter "*.nwf"
+$NWFList_Level = Get-ChildItem $NWFFolderByLevel | Get-ChildItem -Recurse -Filter "*.nwf"
 
 #Update all nwf searchsets and viewpoints
-WriteLog-Full "Updating all nwf search sets and viewpoints..."
 Initialize-NavisworksApi
 $napiDC = [Autodesk.Navisworks.Api.Controls.DocumentControl]::new()
 $i = 0
-$fileOpened = $napiDC.Document.TryOpenFile($SelectionVPfile)
-ForEach($nwf in $NWFList){
-    $i = $i+1
-    Write-Progress -Activity "Updating Selection Sets and Viewpoints..." -Status ("Updating file: {0}" -f $nwf.Name) -PercentComplete (($i/$NWFList.count)*100)
-    if ($fileOpened) {
-        $viewpoint = $napiDC.Document.SavedViewpoints.CreateCopy()
-        $selectionset = $napiDC.Document.SelectionSets.CreateCopy()
+WriteLog-Full "Start updating search sets and viewpoints..."
+
+#By Level
+try{
+    ForEach($nwf in $NWFList_Level){
+        $i = $i+1
+        Write-Progress -Activity "Cleaning viewpoints for level models..." -Status ("Updating file: {0}" -f $nwf.Name) -PercentComplete (($i/$NWFList_Level.count)*100)
+        WriteLog-Full ("Updating file: {0}" -f $nwf)
         $napiDC.Document.TryOpenFile($nwf.FullName)
         $napiDC.Document.SavedViewpoints.Clear()
-        $napiDC.Document.SavedViewpoints.CopyFrom($viewpoint)
-        $napiDC.Document.SelectionSets.Clear()
-        $napiDC.Document.SelectionSets.CopyFrom($selectionset)
         $napiDC.Document.SaveFile($nwf.FullName)
-        WriteLog-Full ("COMPLETED: {0}" -f $nwf)
+        }
+ }
+
+catch{
+    $BuildException = $_.Exception.Message
+    WriteLog-Full $BuildException -Type ERROR
+    $BuildSuccess = $false
     }
+
+#All other
+try{
+    if($napiDC.Document.TryOpenFile($SelectionVPfile)) {
+        ForEach($nwf in $NWFList){
+            If(!($nwf.Name -match "(PG-FM|F26-FM)")){
+                $i = $i+1
+                Write-Progress -Activity "Updating Selection Sets and Viewpoints..." -Status ("Updating file: {0}" -f $nwf.Name) -PercentComplete (($i/$NWFList.count)*100)
+                WriteLog-Full ("Updating file: {0}" -f $nwf)
+                $viewpoint = $napiDC.Document.SavedViewpoints.CreateCopy()
+                $selectionset = $napiDC.Document.SelectionSets.CreateCopy()
+                $napiDC.Document.TryOpenFile($nwf.FullName)
+                $napiDC.Document.SavedViewpoints.Clear()
+                $napiDC.Document.SavedViewpoints.CopyFrom($viewpoint)
+                $napiDC.Document.SelectionSets.Clear()
+                $napiDC.Document.SelectionSets.CopyFrom($selectionset)
+                $napiDC.Document.SaveFile($nwf.FullName)
+            }
+        }
     else{
-        WriteLog-Full ("ERROR: {0}" -f $nwf)
-        WriteLog ("Master model with search sets and viewpoints does not exist: {0}" -f $SelectionVPfile)
-        Write-Warning ("Master model with search sets and viewpoints does not exist: {0}" -f $SelectionVPfile)
+        WriteLog-Full ("Master model with search sets and viewpoints does not exist: {0}" -f $SelectionVPfile) -Type WARN
         #Write-Host "" -BackgroundColor Red -ForegroundColor Black
     }
-}
-WriteLog-Full "Completed updating search sets and viewpoints"
+    }
+ }
+
+catch{
+    $BuildException = $_.Exception.Message
+    WriteLog-Full $BuildException -Type ERROR
+    $BuildSuccess = $false
+    }
+WriteLog-Full "Completed updating search sets and viewpoints..."
 
 ################################# FEDERATED MODEL BUILD SECTION #################################
 

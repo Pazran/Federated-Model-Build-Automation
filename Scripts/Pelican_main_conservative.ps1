@@ -1262,6 +1262,7 @@ catch{
  }
 
 $NWFList = Get-ChildItem $NWFFolderAll -Exclude "_Archived","_Rejected","test","_Retired","1 By Level" | Get-ChildItem -Recurse -Filter "*.nwf" | Where-Object { $_.LastWriteTime -gt $DateStarted }
+$NWFList_Level = Get-ChildItem $NWFFolderByLevel | Get-ChildItem -Recurse -Filter "*.nwf" | Where-Object { $_.LastWriteTime -gt $DateStarted }
 
 #Update all nwf searchsets and viewpoints
 Initialize-NavisworksApi
@@ -1269,6 +1270,25 @@ $napiDC = [Autodesk.Navisworks.Api.Controls.DocumentControl]::new()
 $i = 0
 WriteLog-Full "Start updating search sets and viewpoints..."
 
+#By Level
+try{
+    ForEach($nwf in $NWFList_Level){
+        $i = $i+1
+        Write-Progress -Activity "Cleaning viewpoints for level models..." -Status ("Updating file: {0}" -f $nwf.Name) -PercentComplete (($i/$NWFList_Level.count)*100)
+        WriteLog-Full ("Updating file: {0}" -f $nwf)
+        $napiDC.Document.TryOpenFile($nwf.FullName)
+        $napiDC.Document.SavedViewpoints.Clear()
+        $napiDC.Document.SaveFile($nwf.FullName)
+        }
+ }
+
+catch{
+    $BuildException = $_.Exception.Message
+    WriteLog-Full $BuildException -Type ERROR
+    $BuildSuccess = $false
+    }
+
+#All other
 try{
     if($napiDC.Document.TryOpenFile($SelectionVPfile)) {
         ForEach($nwf in $NWFList){
