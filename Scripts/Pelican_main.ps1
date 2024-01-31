@@ -415,9 +415,9 @@ If($NWFList_today -or $WithUpdatedModel -or $WithNewModel -or $WithRetiredModel)
         
     If($NWFList_ByFM -or $WithUpdatedModel -or $WithNewModel -or $WithRetiredModel){
         If($ToIncludeByFM){
-                $ModeltoRebuildByFinalNWF = $NWFList_ByFM_All | ForEach-Object { $_.Name }
-                $ModeltoRebuildByFinalNWF = $($ModeltoRebuildByFinal;$ModeltoRebuildByFinalNWF)
-                $ToIncludeByFinalFM = $ModeltoRebuildByFinalNWF | Sort -Unique
+            $ModeltoRebuildByFinalNWF = $NWFList_ByFM_All | ForEach-Object { $_.Name }
+            $ModeltoRebuildByFinalNWF = $($ModeltoRebuildByFinal;$ModeltoRebuildByFinalNWF)
+            $ToIncludeByFinalFM = $ModeltoRebuildByFinalNWF | Sort -Unique
             }
         }
     }
@@ -515,8 +515,8 @@ $NWFList = Get-ChildItem $NWFFolderAll -Exclude "_Archived","_Rejected","test","
 $NWFList_Level = Get-ChildItem $NWFFolderByLevel | Get-ChildItem -Recurse -Filter "*.nwf" | Where-Object { $_.LastWriteTime -gt $DateStarted }
 Initialize-NavisworksApi
 $napiDC = [Autodesk.Navisworks.Api.Controls.DocumentControl]::new()
-$i = 0
 WriteLog-Full "Start updating search sets and viewpoints..."
+$i = 0
 
 #By Level
 try{
@@ -537,15 +537,16 @@ catch{
     }
 
 #All other
+$i = 0
 try{
     if($napiDC.Document.TryOpenFile($SelectionVPfile)) {
+        $viewpoint = $napiDC.Document.SavedViewpoints.CreateCopy()
+        $selectionset = $napiDC.Document.SelectionSets.CreateCopy()
         ForEach($nwf in $NWFList){
             If(!($nwf.Name -match "(PG-FM|F26-FM)")){
                 $i = $i+1
                 Write-Progress -Activity "Updating Selection Sets and Viewpoints..." -Status ("Updating file: {0}" -f $nwf.Name) -PercentComplete (($i/$NWFList.count)*100)
                 WriteLog-Full ("Updating file: {0}" -f $nwf)
-                $viewpoint = $napiDC.Document.SavedViewpoints.CreateCopy()
-                $selectionset = $napiDC.Document.SelectionSets.CreateCopy()
                 $napiDC.Document.TryOpenFile($nwf.FullName)
                 $napiDC.Document.SavedViewpoints.Clear()
                 $napiDC.Document.SavedViewpoints.CopyFrom($viewpoint)
@@ -557,8 +558,9 @@ try{
         }
     else{
         WriteLog-Full ("Master model with search sets and viewpoints does not exist: {0}" -f $SelectionVPfile) -Type WARN
-        #Write-Host "" -BackgroundColor Red -ForegroundColor Black
     }
+    $napiDC.Document.Clear()
+    $napiDC.Dispose()
  }
 
 catch{
@@ -675,5 +677,26 @@ catch{
 
 #Send email with the federated model build status and log if there is any error
 If(!($BuildSuccess)){
-    . .\Email.ps1
+    $DateNow = $((Get-Date).ToString('yyyy-MM-dd'))
+    $DateNowFull = Get-Date
+    $LogFile = "$LogFolder\Pelican_federated_model_build_log_{0}.csv" -f $DateStartedText
+
+    try{
+        $outlook = New-Object -ComObject Outlook.Application
+        $mail = $outlook.CreateItem(0)
+        $mail.importance = 2
+        $mail.subject = "ERROR: Pelican Federated Model Build for $DateNow"
+        $mail.body = "There is an error while running the Federated Model Build.`n`nBuild started on <$DateStarted> and finished on <$DateNowFull>"
+        $mail.to = "lawrenerno.jinkim@exyte.net;janetjasintha.lopez@exyte.net"
+        $mail.Attachments.Add($LogFile)
+        WriteLog-Full "Sending email to : lawrenerno.jinkim@exyte.net and janetjasintha.lopez@exyte.net"
+        $mail.Send()
+        Start-Sleep 20
+        $outlook.Quit()
+        }
+
+    catch{
+        $Exception = $_.Exception.Message
+        WriteLog-Full "$Exception" -Type ERROR
+        }
     }
