@@ -1,6 +1,6 @@
 <#
     Program Name : Pelican_force_build_nwf_and_models
-    Verison : 5.2.0
+    Version : 5.2.0
     Description : Force build all federated models (force build all NWF and Federated Models)
     Author : Lawrenerno Jinkim (lawrenerno.jinkim@exyte.net)
 #>
@@ -1990,6 +1990,38 @@ try{
         $viewpoint = $napiDC.Document.SavedViewpoints.CreateCopy()
         $selectionset = $napiDC.Document.SelectionSets.CreateCopy()
         ForEach($nwf in $NWFList){
+            $i = $i+1
+            Write-Progress -Activity "Updating Selection Sets and Viewpoints..." -Status ("Updating file: {0}" -f $nwf.Name) -PercentComplete (($i/$NWFList.count)*100)
+            WriteLog-Full ("Updating file: {0}" -f $nwf)
+            $napiDC.Document.TryOpenFile($nwf.FullName)
+            $napiDC.Document.SavedViewpoints.Clear()
+            $napiDC.Document.SavedViewpoints.CopyFrom($viewpoint)
+            $napiDC.Document.SelectionSets.Clear()
+            $napiDC.Document.SelectionSets.CopyFrom($selectionset)
+            $napiDC.Document.SaveFile($nwf.FullName)
+            }
+        }
+    else{
+        WriteLog-Full ("Master model with search sets and viewpoints does not exist: {0}" -f $SelectionVPfile) -Type WARN
+    }
+    $napiDC.Document.Clear()
+    $napiDC.Dispose()
+ }
+
+catch{
+    $BuildException = $_.Exception.Message
+    WriteLog-Full $BuildException -Type ERROR
+    $BuildSuccess = $false
+    }
+
+<#
+#All other
+$i = 0
+try{
+    if($napiDC.Document.TryOpenFile($SelectionVPfile)) {
+        $viewpoint = $napiDC.Document.SavedViewpoints.CreateCopy()
+        $selectionset = $napiDC.Document.SelectionSets.CreateCopy()
+        ForEach($nwf in $NWFList){
             If(!($nwf.Name -match "(PG-FM|F26-FM)")){
                 $i = $i+1
                 Write-Progress -Activity "Updating Selection Sets and Viewpoints..." -Status ("Updating file: {0}" -f $nwf.Name) -PercentComplete (($i/$NWFList.count)*100)
@@ -2015,6 +2047,7 @@ catch{
     WriteLog-Full $BuildException -Type ERROR
     $BuildSuccess = $false
     }
+#>
 
 WriteLog-Full "Completed updating search sets and viewpoints..."
 

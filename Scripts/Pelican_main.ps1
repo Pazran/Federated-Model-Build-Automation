@@ -1,6 +1,6 @@
 <#
     Program Name : Pelican_main
-    Verison : 5.2.0
+    Version : 5.2.0
     Description : Build affected NWF if there is new or retired models. Build necessary Federated Models
     Author : Lawrenerno Jinkim (lawrenerno.jinkim@exyte.net)
 #>
@@ -116,24 +116,6 @@ $WithUpdatedModel = $true
 $NWCList = Get-ChildItem $TempNWC_All -Exclude "_Archived","_Rejected","test","_Retired","_New.txt" | Get-ChildItem -Recurse -Filter "*.nwc"
 $NWCList_today = Get-ChildItem $TempNWC_All -Exclude "_Archived","_Rejected","test","_Retired","_New.txt" | Get-ChildItem -Recurse -Filter "*.nwc" | Where-Object { $_.LastWriteTime -gt $(((Get-Date).AddDays(-1)).ToString('yyyy-MM-dd')) }
 
-If(!(Test-Path "$TempNWC_All\_Retired")){
-        WriteLog-Full "Retired Model folder does not exist: $TempNWC_All\_Retired - Building model without retired model list" -Type WARN
-        $WithRetiredModel = $false
-    }
-else{
-    $NWCList_retired = Get-ChildItem "$TempNWC_All\_Retired" -Filter "*.nwc"
-    If(!(Get-ChildItem "$TempNWC_All\_Retired" -Filter "*.nwc")){
-        WriteLog-Full "No retired model found - Building model without retired model list" -Type INFO
-        $WithRetiredModel = $false
-    }
-    else{
-        WriteLog-Full ("{0} Retired model found - Building model with retired model list" -f $NWCList_Retired.count) -Type INFO
-        ForEach($r in $NWCList_Retired){
-            WriteLog-Full ("Retired model: {0}" -f $r.Name)
-            }
-        }
-}
-
 #Get list of model to be rebuild
 try{
     #Check if there is modified nwc files
@@ -234,17 +216,46 @@ else{
 $NWDList = Get-ChildItem $TempNWDFolder -Exclude "_Archived","_Rejected","test","_Retired" | Get-ChildItem -Recurse -Filter "*.nwd"
 $Buildinglist = "BG1-","BG2-","F26_APB1-","F26_APB2-","F26_FAB-","F26_BCS-","LB1-","LK1-","P09-","P12-","PGB-","PGP-","PGC-","WTY-"
 
-#Check if New model text file exist
-If(!(Test-Path $NewModelFile)){
-    WriteLog-Full ("New model file does not exist: {0}" -f $NewModelFile) -Type WARN
-    $WithNewModel = $false
-}
+<#
+#Check for retired model
+If(!(Test-Path "$TempNWC_All\_Retired")){
+        WriteLog-Full "Retired Model folder does not exist: $TempNWC_All\_Retired - Building model without retired model list" -Type WARN
+        $WithRetiredModel = $false
+    }
 else{
-    If(!($ListofNewModel = Get-Content $NewModelFile)){
-        WriteLog-Full ("There is no new model file found in: {0}" -f $NewModelFile) -Type INFO
-        $WithNewModel = $false
+    $NWCList_retired = Get-ChildItem "$TempNWC_All\_Retired" -Filter "*.nwc"
+    If(!(Get-ChildItem "$TempNWC_All\_Retired" -Filter "*.nwc")){
+        WriteLog-Full "No retired model found - Building model without retired model list" -Type INFO
+        $WithRetiredModel = $false
+    }
+    else{
+        WriteLog-Full ("{0} Retired model found - Building model with retired model list" -f $NWCList_Retired.count) -Type INFO
+        ForEach($r in $NWCList_Retired){
+            WriteLog-Full ("Retired model: {0}" -f $r.Name)
+            }
         }
-    $ListofNewModel = Get-Content $NewModelFile
+}#>
+
+#Check for retired model
+If(!(ReadExcelFile -Path $NRFile -SheetName $RSheet -Mode Read)){
+    WriteLog-Full ("There is no retired model file found in: {0}" -f (Split-Path $NRFile -Leaf)) -Type INFO
+    $WithRetiredModel = $false
+    }
+else{
+    $ListOfRetiredModel = ReadExcelFile -Path $NRFile -SheetName $RSheet -Mode Read
+    WriteLog-Full ("{0} Retired model found - Building model with retired model list" -f $ListOfRetiredModel.count) -Type INFO
+    $ListOfRetiredModel | ForEach-Object {WriteLog-Full "Retired model: $_"}
+    }
+
+#Check if there is new model
+If(!(ReadExcelFile -Path $NRFile -SheetName $NSheet -Mode Read)){
+    WriteLog-Full ("There is no new model file found in: {0}" -f (Split-Path $NRFile -Leaf)) -Type INFO
+    $WithNewModel = $false
+    }
+else{
+    $ListofNewModel = ReadExcelFile -Path $NRFile -SheetName $NSheet -Mode Read
+    WriteLog-Full ("{0} New model found - Building model with new model list" -f $ListofNewModel.count) -Type INFO
+    $ListofNewModel | ForEach-Object {WriteLog-Full "New model: $_"}
     }
 
 #Rebuild NWF model only if there is new or retired model
@@ -254,32 +265,30 @@ try{
         WriteLog-Full "Skip rebuild NWF files. All NWF is up to date." -Type INFO
         }
     else{
-        WriteLog-Full ("{0} New model found - Building model with new model list" -f $ListofNewModel.count) -Type INFO
-        $ListofNewModel | ForEach-Object {WriteLog-Full "New model: $_"}
         WriteLog-Full "Rebuilding nwf files..."
         $ListOfNewAndRetiredModel = @()
-        If($ListofNewModel){
-            $ListOfNewAndRetiredModel = $ListofNewModel | ForEach-Object {"$_"}
+        If($WithNewModel){
+            $ListOfNewAndRetiredModel = $ListofNewModel
             }
         If($WithRetiredModel){
-            $NWCList_retired = Get-ChildItem "$TempNWC_All\_Retired" -Filter "*.nwc"
+            #$NWCList_retired = Get-ChildItem "$TempNWC_All\_Retired" -Filter "*.nwc"
             #BEFORE FIX
             #$ListOfNewAndRetiredModel += $NWCList_retired.Name
-            $ListOfRetiredModel = $NWCList_retired | ForEach-Object {$_.Name}
+            #$ListOfRetiredModel = $NWCList_retired | ForEach-Object {$_.Name}
             $ListOfNewAndRetiredModel = $($ListofNewModel;$ListOfRetiredModel)
+            }
 
-        }
         #$ListOFNWC = Get-ChildItem $TempNWC_All -Exclude "_Archived","_Rejected","test","_Retired" -Include $ListOfNewAndRetiredModel | Get-ChildItem -Recurse -Filter "*.nwc"
         #$ListOFNWC = Get-ChildItem $TempNWC_All -Exclude "_Archived","_Rejected","test","_New.txt" -Include $ListOfNewAndRetiredModel -Recurse | Where-Object {$_.FullName -notlike "*\_*"}
-        $ListOFNWC = Get-ChildItem $TempNWC_All -Exclude "_Archived","_Rejected","test","_New.txt" -Include $ListOfNewAndRetiredModel -Recurse | Where-Object {$_.FullName -notlike "*\_Archived*"}
+        #$ListOFNWC = Get-ChildItem $TempNWC_All -Exclude "_Archived","_Rejected","test","_New.txt" -Include $ListOfNewAndRetiredModel -Recurse | Where-Object {$_.FullName -notlike "*\_Archived*"}
         
         #Build NWF By Level model for DM CM EM
         $NWFModeltoRebuildByLevel = @()
         ForEach($Phase in $ModelPhase){
             ForEach($Model in $ModelArrayLevel){
                 $Array = (Get-Variable $Model$Phase).Value
-                RebuildNWF-Dynamic -ModelArray $Array -FileList $NWCList -FileListT $ListOFNWC -OutFolder $NWFFolderByLevel -Stage Level
-                $ModelList = GetModelToRebuild -ModelArray $Array -FileListT $ListOFNWC -Stage Level
+                RebuildNWF-Dynamic -ModelArray $Array -FileList $NWCList -FileListT $ListOfNewAndRetiredModel -OutFolder $NWFFolderByLevel -Stage Level
+                $ModelList = GetModelToRebuild_List -ModelArray $Array -FileListT $ListOfNewAndRetiredModel -Stage Level
                 $NWFModeltoRebuildByLevel += $ModelList
             }
         }
@@ -287,24 +296,29 @@ try{
         #Build NWF for Main Building model for DM CM EM
         $NWFList_Temp = Get-ChildItem $NWFFolderByLevel -Recurse -Filter "*.nwf" | Where-Object { $_.LastWriteTime -gt $DateStarted }
         $NWFtoRebuildByBuildingMain = @()
-        ForEach($a in $ModelPhase){
-            ForEach($b in $ModelArrayLevel){
-                $Array = (Get-Variable $b$a).Value
-                $fileN = ("$b*{0}" -f $a.Replace("_","-"))
-                If($NWFModeltoRebuildByLevel -like $fileN){
-                    $NWFtoRebuildByBuildingMain += ("$b{0}" -f $a.Replace("_","-"))
-                }
-                RebuildNWF-Dynamic -ModelArray $Array -FileList $NWDList -FileListT $NWFList_Temp -OutFolder $NWFFolderByBuilding -Stage Building -BuildingType Main
+        If($NWFList_Temp){
+            ForEach($a in $ModelPhase){
+                ForEach($b in $ModelArrayLevel){
+                    $Array = (Get-Variable $b$a).Value
+                    $fileN = ("$b*{0}" -f $a.Replace("_","-"))
+                    If($NWFModeltoRebuildByLevel -like $fileN){
+                        $NWFtoRebuildByBuildingMain += ("$b{0}" -f $a.Replace("_","-"))
+                    }
+                    RebuildNWF-Dynamic -ModelArray $Array -FileList $NWDList -FileListT $NWFList_Temp -OutFolder $NWFFolderByBuilding -Stage Building -BuildingType Main
         
+                }
             }
         }
 
         #Build NWF for Ancillary By Building model for DM CM EM
+        Write-Output "DEBUG--"
+        Write-Output $ListOfNewAndRetiredModel
+        Write-Output "--DEBUG"
         ForEach($Phase in $ModelPhase){
             ForEach($Model in $ModelArrayAncillaryBuilding){
                 $Array = (Get-Variable $Model$Phase).Value
-                RebuildNWF-Dynamic -ModelArray $Array -FileList $NWCList -FileListT $ListOFNWC -OutFolder $NWFFolderByBuilding -Stage Building -BuildingType Ancillary
-                $ModelList = GetModelToRebuild -ModelArray $Array -FileListT $ListOFNWC -Stage Building
+                RebuildNWF-Dynamic -ModelArray $Array -FileList $NWCList -FileListT $ListOfNewAndRetiredModel -OutFolder $NWFFolderByBuilding -Stage Building -BuildingType Ancillary
+                $ModelList = GetModelToRebuild_List -ModelArray $Array -FileListT $ListOfNewAndRetiredModel -Stage Building
                 $ToRebuildByBuilding += $ModelList
             }
         }
@@ -314,13 +328,13 @@ try{
         $FMModelToBeRebuild = $($ToRebuildByBuildingMainFM;$ToRebuildByBuildingFM)
 
         #Check if need to rebuild FM NWF files
-        If($ListOFNWC.Name -like "*-EM*.nwc"){
-            If($ListOFNWC.count -le 1){
-                WriteLog-Full ("EM model found: {0}" -f $ListOFNWC.Name) -Type INFO
+        If($ListOfNewAndRetiredModel -like "*-EM*.nwc"){
+            If($ListOfNewAndRetiredModel.count -le 1){
+                WriteLog-Full ("EM model found: {0}" -f $ListOfNewAndRetiredModel.Name) -Type INFO
             }
             else{
-                WriteLog-Full ("{0} EM model found:" -f ($ListOFNWC.Name -like "*-EM*.nwc").count) -Type INFO
-                $EMModelList = ($ListOFNWC.Name -like "*-EM*.nwc") | ForEach-Object { "$_"}
+                WriteLog-Full ("{0} EM model found:" -f ($ListOfNewAndRetiredModel -like "*-EM*.nwc").count) -Type INFO
+                $EMModelList = ($ListOfNewAndRetiredModel -like "*-EM*.nwc") | ForEach-Object { "$_"}
                 $EMModelList | ForEach-Object {WriteLog-Full $_}
                 #Write-Output "DEBUG--"
                 #Write-Output $EMModelList

@@ -69,7 +69,6 @@ If(!($NFiles_DM -eq ('True' -or 'False'))){
         }
     }
 
-Write-Output $NFiles_EM
 If(!($NFiles_CM -eq ('True' -or 'False'))){
     ForEach($f in $NFiles_CM){
         $FFileName = "$OverallACCFolder_Incorrect\{0}" -f $f

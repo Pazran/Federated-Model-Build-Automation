@@ -67,6 +67,10 @@ $OverallACCFolder = "C:\Users\$Env:UserName\Downloads\_OVERALL_ACC"
 $OverallACCFolder_Rejected = "C:\Users\$Env:UserName\Downloads\_OVERALL_ACC\_Rejected"
 $OverallACCFolder_Incorrect = "C:\Users\$Env:UserName\Downloads\_OVERALL_ACC\_Incorrect_folder"
 
+#Excel settings
+$NRFile = 'D:\S13_BIM-VDC\_Archive\++ Janet\Retired\N_R.xlsm'
+$NSheet = '_NEW'
+$RSheet = '_RETIRED'
 
 #Folder initialization
 If(!(Test-Path "$PSScriptRoot\Logs")){
@@ -363,7 +367,7 @@ function RebuildNWF-Dynamic {
             $StageData = "1 By Level"
             ForEach($item in ($SortedModelArray.keys).GetEnumerator()){
 	            $Flist = $FileList -Match $SortedModelArray.$item.FPattern
-                $Flist_today = $FileListT.Name -Match $SortedModelArray.$item.FPattern
+                $Flist_today = $FileListT -Match $SortedModelArray.$item.FPattern
                 If ($Flist_today){
                     $Flist = $Flist | Sort
                     Write-Output $Flist
@@ -383,7 +387,7 @@ function RebuildNWF-Dynamic {
             Switch ($BuildingType){
                 Ancillary {
 	                $Flist = $FileList -Match $SortedModelArray.FPattern
-                    $Flist_today = $FileListT.Name -Match $SortedModelArray.FPattern
+                    $Flist_today = $FileListT -Match $SortedModelArray.FPattern
                     If ($Flist_today){
                         $Flist = $Flist | Sort
                         Write-Output $Flist
@@ -391,7 +395,7 @@ function RebuildNWF-Dynamic {
                         $Filein = "$BatchTextFolder\{0}\{1}.txt" -f $StageData, $SortedModelArray.FName
                         
                         #Check if it is BG1-CM.. If true, append Pelican ASU model
-                        If($SortedModelArray.FName = "BG1-CM"){
+                        If($SortedModelArray.FName -eq 'BG1-CM'){
                             WriteLog-Full ("Adding {0} into the list" -f ($PelicanASUModel -split "\\")[-1])
                             $FlistASU = $Flist | ForEach-Object { $_.FullName }
                             $FlistASU = $($FlistASU;$PelicanASUModel)
@@ -410,11 +414,11 @@ function RebuildNWF-Dynamic {
                 Main {
                     $List = @()
                     ForEach($item in $SortedModelArray.keys){
-	                    $Flist_today = $FileListT.Name -Match $SortedModelArray.$item.FName
+	                    $Flist_today = $FileListT -Match $SortedModelArray.$item.FName
                         If ($Flist_today){
                             $FileName = $SortedModelArray.$item.FName -replace "-.{3,4}-", "-"
                             ForEach($item in $SortedModelArray.keys){
-	                        $Flist = $FileList -Match $SortedModelArray.$item.FName
+	                        $Flist = $FileList.Name -Match $SortedModelArray.$item.FName
                             If ($Flist){
                                 $List += $Flist.FullName
                                 }
@@ -467,6 +471,45 @@ function GetModelToRebuild {
             }
         Building {
             $Flist_today = $FileListT.Name -Match $SortedModelArray.FPattern
+            If ($Flist_today){
+                $RebuildModelArray += $SortedModelArray.FName
+                }
+            }
+        }
+        Return $RebuildModelArray
+   }
+
+function GetModelToRebuild_List {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)]
+        [Hashtable]$ModelArray,
+        [Parameter(Mandatory)]
+        [System.Object[]]$FileListT,
+        [Parameter(Mandatory)]
+        [ValidateSet('Level','Building')]
+        [String]$Stage,
+        [Parameter()]
+        [ValidateSet('Main','Ancillary')]
+        [String]$BuildingType
+        )
+
+        $RebuildModelArray=@()
+        $SortedModelArray = sortAlphabeticallyRecursive $ModelArray
+        Switch($Stage){
+        Level {
+            #$StageData = "1 By Level"
+            ForEach($item in ($SortedModelArray.keys).GetEnumerator()){
+	            #$Flist = $FileList -Match $SortedModelArray.$item.FPattern
+                $Flist_today = $FileListT -Match $SortedModelArray.$item.FPattern
+                If ($Flist_today){
+                    $RebuildModelArray += $SortedModelArray.$item.FName
+                    
+                    }
+                }
+            }
+        Building {
+            $Flist_today = $FileListT -Match $SortedModelArray.FPattern
             If ($Flist_today){
                 $RebuildModelArray += $SortedModelArray.FName
                 }
@@ -1162,7 +1205,7 @@ $LK1_DM = @{
 #BG1 CM
 $BG1_CM = @{
     FName = "BG1-CM"
-    FPattern = "(^XPGBG1-[123A][ARM0][AWL]-\d{3}-\w{2}-[AC]0[BD]00-\w{3}-CM\.nwc$)"
+    FPattern = "^XPGBG1-[123A][ARM0][AWL]-\d{3}-\w{2}-[AC]0[BD]00-\w{3}-CM\.nwc$"
     }
 
 #BG2 CM

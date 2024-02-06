@@ -1,6 +1,6 @@
 <#
     Program Name : Pelican_main_conservative
-    Verison : 5.2.0
+    Version : 5.2.0
     Description : Build modified, new and retired (build all affected NWF and Federated Model)
     Author : Lawrenerno Jinkim (lawrenerno.jinkim@exyte.net)
 #>
