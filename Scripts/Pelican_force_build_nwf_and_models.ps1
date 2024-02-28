@@ -8,35 +8,59 @@
 
 WriteLog-Full "Running build on local Computer: $env:computername"
 
-#Backup the previous NWCs folder
+################ PROLOGUE ACT ################
+
+$srcfolder = "C:\Users\$Env:UserName\Downloads"
+$daterun = $((Get-Date).ToString('yyyy-MM-dd'))
+#$daterun = '2024-02-13'
+
+$SubconDM = "$srcfolder\NWC-DM"
+$SubconCM = "$srcfolder\NWC-CM"
+$SubconEM = "$srcfolder\NWC-EM"
+
+$IntDM = "$srcfolder\DM"
+$IntCM = "$srcfolder\CM"
+$IntEM = "$srcfolder\EM"
+$IntCMP3D = "$srcfolder\CM-Plant3D"
+
+$tempDM = "$srcfolder\DM-NWCS"
+$tempCM = "$srcfolder\CM-NWCS"
+$tempEM = "$srcfolder\EM-NWCS"
+
+#Check if directory exist. If not create it
+If(!(Test-Path $TempNWC_DM)){
+    New-Item -ItemType Directory -Path $TempNWC_DM -Force
+    }
+If(!(Test-Path $TempNWC_CM)){
+    New-Item -ItemType Directory -Path $TempNWC_CM -Force
+    }
+If(!(Test-Path $TempNWC_EM)){
+    New-Item -ItemType Directory -Path $TempNWC_EM -Force
+    }
+If(!(Test-Path $IncorrectFolder)){
+    New-Item -ItemType Directory -Path $IncorrectFolder -Force
+    }
+If(!(Test-Path $RejectedFolder)){
+    New-Item -ItemType Directory -Path $RejectedFolder -Force
+    }
+
+#Backup NWCs files
 try{
     WriteLog-Full "Backup previous NWCs folder: $TempNWC_All"
     $i = 0
-    $Files = Get-ChildItem $TempNWC_All -Exclude "_Archived","_Rejected","test","_Retired" | Get-ChildItem -Filter "*.nwc"  -Recurse
+    $Files = Get-ChildItem $TempNWC_All -Exclude "_Archived","_Rejected","_Incorrect_folder" | Get-ChildItem -Filter "*.nwc"  -Recurse
     $FileDest = "$BackupDirectory\$((Get-Date).ToString('yyyy-MM-dd'))"
     If(!(Test-Path -Path $FileDest)){
         ForEach($File in $Files){
             $i = $i+1
             $FFileName = "$FileDest\{0}" -f $File.Name
-            if ($File.Name -like "*-CM*")
-                {
-                    $FFileName = "$FileDest\CM-NWCS\{0}" -f $File.Name
-                }
-            if ($File.Name -like "*-DM*")
-                {
-                    $FFileName = "$FileDest\DM-NWCS\{0}" -f $File.Name
-                }
-            if ($File.Name -like "*-EM*")
-                {
-                    $FFileName = "$FileDest\EM-NWCS\{0}" -f $File.Name
-                }
             New-Item -ItemType File -Path $FFileName -Force
-            Copy-Item -Path $File.FullName -Destination $FFileName -Force
+            Move-Item -Path $File.FullName -Destination $FFileName -Force
             Write-Progress -Activity ("Backing up previous NWC files {0}/{1} ({2})..." -f $i, $Files.count, $File.Name) -Status "Progress: " -PercentComplete (($i/$Files.count)*100)
             }
         }
     else{
-        WriteLog-Full ("Backup folder already exist :{0}" -f $((Get-Date).ToString('yyyy-MM-dd')))
+        Write-Output ("Backup folder already exist :{0}" -f $((Get-Date).ToString('yyyy-MM-dd')))
         }
     }
 catch{
@@ -45,46 +69,67 @@ catch{
     $BuildSuccess=$false
     }
 
-#Copy latest NWCs into the temporary build folder
-try{
-    WriteLog-Full "Copy UPDATED and NEW NWCs into temporary build folder"
-    $i = 0
-    #Search only NWCs with the last modified date is a day before the script is run
-    $Files = Get-ChildItem $MainNWC_All -Exclude "_Archived","_Rejected","test","_Retired","_New.txt" | Get-ChildItem -Recurse -Filter "*.nwc" | Where-Object { $_.LastWriteTime -gt $(((Get-Date).AddDays(-1)).ToString('yyyy-MM-dd')) }
-    ForEach($File in $Files){
-        $i = $i+1
-        $FFileName = "$TempNWC_All\{0}" -f $File.Name
-        if ($File.Name -like "*-CM*")
-            {
-                $FFileName = "$TempNWC_All\CM-NWCS\{0}" -f $File.Name
-            }
-        if ($File.Name -like "*-DM*")
-            {
-                $FFileName = "$TempNWC_All\DM-NWCS\{0}" -f $File.Name
-            }
-        if ($File.Name -like "*-EM*")
-            {
-                $FFileName = "$TempNWC_All\EM-NWCS\{0}" -f $File.Name
-            }
-        New-Item -ItemType File -Path $FFileName -Force
-        Copy-Item -Path $File.FullName -Destination $FFileName -Force
-        Write-Progress -Activity ("Copy latest NWC files {0}/{1} ({2})..." -f $i, $Files.count, $File.Name) -Status "Progress: " -PercentComplete (($i/$Files.count)*100)
-        }
-}
-catch{
-    $CopyNWCException = $_.Exception.Message
-    WriteLog-Full "$CopyNWCException" -Type ERROR
-    $BuildSuccess=$false
-}
+#Cleanup rejected and incorrect folder
+Get-ChildItem $RejectedFolder -Filter "*.nwc" | ForEach-Object { Remove-Item -Path $_.FullName -Force }
+Get-ChildItem $IncorrectFolder -Filter "*.nwc" | ForEach-Object { Remove-Item -Path $_.FullName -Force }
+
+#Extract all new zip files
+WriteLog-Full "Extracting ZIP files..."
+#Get-ChildItem $srcfolder -Filter *.zip | Where {$_.FullName -like "*$daterun*"} | WriteLog-Full ("Zip files: {0}" -f $_.Name)
+Get-ChildItem $srcfolder -Filter *.zip | Where {$_.FullName -like "*$daterun*"} | Expand-Archive -DestinationPath $srcfolder -Force
+
+If(Test-Path $SubconDM){
+    Get-ChildItem $SubconDM -Filter "*.nwc" | ForEach-Object { Move-Item -Path $_.FullName -Destination "$TempNWC_DM" -Force }
+    }
+If(Test-Path $SubconCM){
+    Get-ChildItem $SubconCM -Filter "*.nwc" | ForEach-Object { Move-Item -Path $_.FullName -Destination "$TempNWC_CM" -Force }
+    }
+If(Test-Path $SubconEM){
+    Get-ChildItem $SubconEM -Filter "*.nwc" | ForEach-Object { Move-Item -Path $_.FullName -Destination "$TempNWC_EM" -Force }
+    }
+If(Test-Path $IntDM){
+    Get-ChildItem $IntDM -Filter "*.nwc" | ForEach-Object { Move-Item -Path $_.FullName -Destination "$TempNWC_DM" -Force }
+    }
+If(Test-Path $IntCM){
+    Get-ChildItem $IntCM -Filter "*.nwc" | ForEach-Object { Move-Item -Path $_.FullName -Destination "$TempNWC_CM" -Force }
+    }
+If(Test-Path $IntEM){
+    Get-ChildItem $IntEM -Filter "*.nwc" | ForEach-Object { Move-Item -Path $_.FullName -Destination "$TempNWC_EM" -Force }
+    }
+If(Test-Path $IntCMP3D){
+    Get-ChildItem $IntCMP3D -Filter "*.nwc" | ForEach-Object { Move-Item -Path $_.FullName -Destination "$TempNWC_CM" -Force }
+    }
+
+#Delete all leftover folders
+If(Test-Path $SubconDM){
+    Remove-Item $SubconDM -Force -Recurse
+    }
+If(Test-Path $SubconCM){
+    Remove-Item $SubconCM -Force -Recurse
+    }
+If(Test-Path $SubconEM){
+    Remove-Item $SubconEM -Force -Recurse
+    }
+If(Test-Path $IntDM){
+    Remove-Item $IntDM -Force -Recurse
+    }
+If(Test-Path $IntCM){
+    Remove-Item $IntCM -Force -Recurse
+    }
+If(Test-Path $IntEM){
+    Remove-Item $IntEM -Force -Recurse
+    }
+If(Test-Path $IntCMP3D){
+    Remove-Item $IntCMP3D -Force -Recurse
+    }
 
 #Move Rejected models
 try{
     #Regex for correct file naming
     $NPattern = "^XPG\w{2,3}-\w{3,4}-\d{3}-.{2}-\w{5}-\w{3}-(CM|DM|EM)(\.|[-_]ROOM\.|[-_]MAXFIT\.|[-_]AMHS\.|-ST\.)nwc$"
-    $i = 0
-    $Files = Get-ChildItem $TempNWC_All -Exclude "_Archived","_Rejected","_Retired","_New.txt" | Get-ChildItem  -Recurse -FIlter "*.nwc"
-    New-Item -ItemType Directory -Path $RejectedFolder -Force
+    $Files = Get-ChildItem $TempNWC_All -Exclude "_Rejected","_Incorrect_folder","_Archived" | Get-ChildItem -Recurse -Filter "*.nwc"
     $FList = $Files -notmatch $NPattern
+    $i = 0
     If($Flist){
         WriteLog-Full ("Moving {0} rejected model into: {1}" -f $Flist.count, $RejectedFolder)
         ForEach($File in $FList){
@@ -103,12 +148,56 @@ catch{
     $BuildSuccess=$false
     }
 
+$FilesAll_DM = Get-ChildItem "$TempNWC_DM" -Filter "*.nwc"
+$FilesAll_CM = Get-ChildItem "$TempNWC_CM" -Filter "*.nwc"
+$FilesAll_EM = Get-ChildItem "$TempNWC_EM" -Filter "*.nwc"
+$NFiles_DM = $FilesAll_DM.Name -notlike "*-DM*.nwc"
+$NFiles_CM = $FilesAll_CM.Name -notlike "*-CM*.nwc"
+$NFiles_EM = $FilesAll_EM.Name -notlike "*-EM*.nwc"
+
+#Move models that incorrectly place into folder
+If(!($NFiles_DM -eq ('True' -or 'False'))){
+    ForEach($f in $NFiles_DM){
+        $FFileName = "$IncorrectFolder\{0}" -f $f
+        New-Item -ItemType File -Path $FFileName -Force
+        Move-Item -Path ("$TempNWC_DM\{0}"-f $f) -Destination $FFileName -Force
+        }
+    }
+
+If(!($NFiles_CM -eq ('True' -or 'False'))){
+    ForEach($f in $NFiles_CM){
+        $FFileName = "$IncorrectFolder\{0}" -f $f
+        New-Item -ItemType File -Path $FFileName -Force
+        Move-Item -Path ("$TempNWC_CM\{0}"-f $f) -Destination $FFileName -Force
+        }
+    }
+
+If(!($NFiles_EM -eq ('True' -or 'False'))){
+    ForEach($f in $NFiles_EM){
+        $FFileName = "$IncorrectFolder\{0}" -f $f
+        New-Item -ItemType File -Path $FFileName -Force
+        Move-Item -Path ("$TempNWC_EM\{0}"-f $f) -Destination $FFileName -Force
+        }
+    }
+<#
+try{
+    WriteLog-Full ("Updating database for: {0}" -f (Split-Path $NRFile -Leaf)) -Type INFO
+    ReadExcelFile -Path $NRFile -SheetName $RSheet -Mode Refresh
+    }
+catch{
+    $Exception = $_.Exception.Message
+    WriteLog-Full "$Exception" -Type ERROR
+    $BuildSuccess=$false
+    }#>
+
+################ NWF BUILD ACT ################
+
 WriteLog-Full "Building all NWF files.."
 
 # ---BY LEVEL---
 # ---DM MODEL---
 
-$NWCList = Get-ChildItem $TempNWC_All -Exclude "_Archived","_Rejected","test","_Retired","_New.txt" | Get-ChildItem -Recurse -Filter "*.nwc"
+$NWCList = Get-ChildItem $TempNWC_All -Exclude "_Archived","_Rejected","test","_Retired","_New.txt","_Incorrect_folder" | Get-ChildItem -Recurse -Filter "*.nwc"
 
 $BTextByLevel = "$BatchTextFolder\1 By Level"
 $BTextByBuilding = "$BatchTextFolder\2 By Building"
@@ -1956,6 +2045,8 @@ catch{
     $BuildSuccess=$false
  }
 
+################ UPDATE VIEWPOINTS AND SEARCH SETS ACT ################
+
 $NWFList = Get-ChildItem $NWFFolderAll -Exclude "_Archived","_Rejected","test","1 By Level" | Get-ChildItem -Recurse -Filter "*.nwf"
 $NWFList_Level = Get-ChildItem $NWFFolderByLevel | Get-ChildItem -Recurse -Filter "*.nwf"
 
@@ -1970,7 +2061,7 @@ try{
     ForEach($nwf in $NWFList_Level){
         $i = $i+1
         Write-Progress -Activity "Cleaning viewpoints for level models..." -Status ("Updating file: {0}" -f $nwf.Name) -PercentComplete (($i/$NWFList_Level.count)*100)
-        WriteLog-Full ("Updating file: {0}" -f $nwf)
+        WriteLog-Full ("Updating file: {0}" -f $nwf.Name)
         $napiDC.Document.TryOpenFile($nwf.FullName)
         $napiDC.Document.SavedViewpoints.Clear()
         $napiDC.Document.SaveFile($nwf.FullName)
@@ -2051,7 +2142,7 @@ catch{
 
 WriteLog-Full "Completed updating search sets and viewpoints..."
 
-################################# FEDERATED MODEL BUILD SECTION #################################
+################ FEDERATED MODEL BUILD ACT ################
 
 WriteLog-Full "Building Federated Model..."
 
@@ -2078,8 +2169,9 @@ catch{
     $BuildSuccess=$false
     }
 
-#Copy latest federated model to the NWD folder (ACC folder structure CM DM EM FM)
+################ EPILOGUE ACT ################
 
+#Copy latest federated model to the NWD folder (ACC folder structure CM DM EM FM)
 WriteLog-Full ("Copy latest federated model files to main folder : {0}" -f $MainBuildFolder)
 
 try{
@@ -2139,6 +2231,20 @@ catch{
     WriteLog-Full $BuildException -Type ERROR
     $BuildSuccess=$false
     }
+
+#Remove old NWC and copy latest NWC into Main NWD folder
+
+WriteLog-Full ("Updating <{0}> with latest NWC files" -f $MainNWC_All)
+Get-ChildItem $MainNWC_DM -Filter "*.nwc" | ForEach-Object { Remove-Item -Path $_.FullName -Force }
+Get-ChildItem $MainNWC_CM -Filter "*.nwc" | ForEach-Object { Remove-Item -Path $_.FullName -Force }
+Get-ChildItem $MainNWC_EM -Filter "*.nwc" | ForEach-Object { Remove-Item -Path $_.FullName -Force }
+
+Get-ChildItem $TempNWC_DM -Filter "*.nwc" | ForEach-Object { Copy-Item -Path $_.FullName -Destination "$MainNWC_DM" -Force }
+Get-ChildItem $TempNWC_CM -Filter "*.nwc" | ForEach-Object { Copy-Item -Path $_.FullName -Destination "$MainNWC_CM" -Force }
+Get-ChildItem $TempNWC_EM -Filter "*.nwc" | ForEach-Object { Copy-Item -Path $_.FullName -Destination "$MainNWC_EM" -Force }
+
+$LogFile = "$LogFolder\Pelican_federated_model_build_log_{0}.csv" -f $DateStartedText
+Copy-Item -Path $LogFile -Destination ("$ServerLogFolder\Pelican_federated_model_build_log_{0}.csv" -f $DateStartedText)
 
 #Send email with the federated model build status and log if there is any error
 If(!($BuildSuccess)){

@@ -56,28 +56,32 @@ $ArgumentsByFinalFM = '/i "{0}" /od "{1}"' -f $ByFinalFM, $ByFinalFMOut
 $DateStarted = Get-Date
 $DateStartedText = $((Get-Date).ToString('yyyy-MM-dd'))
 $SelectionVPfile = "$PSScriptRoot\Ref\XPGPG-Viewpoints_SearchSet.nwd"
-$SpecialFile = "$TempNWDFolder"
-$BULogFile = "$PSScriptRoot\Logs\BatchUtility_fm_build_log_$DateStartedText.txt"
-$NewModelFile = "C:\test-temp-all\20-Federated-Model\203-NWCs\_New.txt"
-$PelicanASUModel = @("C:\test-temp-all\20-Federated-Model\204-NWDs\misc\Pelican ASU Model_Utilities Tie In_real world coordinate 20221205.nwd")
+#$SpecialFile = "$TempNWDFolder"
+#$BULogFile = "$PSScriptRoot\Logs\BatchUtility_fm_build_log_$DateStartedText.txt"
+#$NewModelFile = "C:\test-temp-all\20-Federated-Model\203-NWCs\_New.txt"
+$PelicanASUModel = @("$TempNWDFolder\misc\Pelican ASU Model_Utilities Tie In_real world coordinate 20221205.nwd")
 $BuildSuccess = $true
 
 #Janet's folder
 $OverallACCFolder = "C:\Users\$Env:UserName\Downloads\_OVERALL_ACC"
 $OverallACCFolder_Rejected = "C:\Users\$Env:UserName\Downloads\_OVERALL_ACC\_Rejected"
 $OverallACCFolder_Incorrect = "C:\Users\$Env:UserName\Downloads\_OVERALL_ACC\_Incorrect_folder"
+$ServerLogFolder = "\\a1300564\D\S13_BIM-VDC\20-Federated-Model\204-NWDs\_Logs"
+
+$IncorrectFolder = "$TempNWC_All\_Incorrect_folder"
 
 #Excel settings
-$NRFile = 'D:\S13_BIM-VDC\_Archive\++ Janet\Retired\N_R.xlsm'
-$NSheet = '_NEW'
-$RSheet = '_RETIRED'
+#$NRFile = '\\a1300564\D\S13_BIM-VDC\_Archive\++ Janet\Retired\N_R.xlsm'
+$NRFile = "$LogFolder\N_R.xlsm"
+$NSheet = 'NEW'
+$RSheet = 'RETIRED'
 
 #Folder initialization
 If(!(Test-Path "$PSScriptRoot\Logs")){
     New-Item -ItemType Directory -Path "$PSScriptRoot\Logs" -Force
     }
 
-################ FUNCTIONS REGION START ################
+################ FUNCTIONS ACT ################
 
 #Read excel file with read mode or refresh mode
 function ReadExcelFile
@@ -594,7 +598,7 @@ function BuildFederatedModel {
         }
     $i=0
     $Fin = Get-Content $StageDataIN
-    WriteLog-Full ("Building federated model {0}..." -f $StageText)
+    WriteLog-Full ("Building federated model {0}..." -f $StageText) -Type INFO
     ForEach($nwf in $Fin){
         $i=$i+1
         $nwfname = ((($nwf -split "\\")[-1]).Replace(".nwf",".nwd")).Replace(".nwf",".nwd")
@@ -609,7 +613,7 @@ function BuildFederatedModel {
 }
 
 
-########################## START NAME PATTERN ############################
+########################## NAME PATTERN ACT ############################
 
 # -----------------------
 #      BY LEVEL
@@ -1311,5 +1315,3 @@ $LK1_EM = @{
     FName = "LK1-EM"
     FPattern = "^XPGLK1-([1-5]|A)\w{2}-\d{3}-\w{2}-A0B00-\w{3}-EM\.nwc$"
     }
-
-########################## END NAME PATTERN ############################
