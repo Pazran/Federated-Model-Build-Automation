@@ -1153,31 +1153,31 @@ $PGP_EM = @{
 #BG1 DM
 $BG1_DM = @{
     FName = "BG1-DM"
-    FPattern = "^XPGBG1-[123A][ARM0][AWL]-\d{3}-\w{2}-[AC]0[BD]00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+    FPattern = "^XPGBG1-[0123A][ARMU0][AWL]-\d{3}-\w{2}-[0AC]0[0BD]00-\w{3}(-DM|-DM-ROOM)\.nwc$"
     }
 
 #BG2 DM
 $BG2_DM = @{
     FName = "BG2-DM"
-    FPattern = "^XPGBG2-[1A][01A][A]-\d{3}-\w{2}-A0000-\w{3}(-DM|-DM-ROOM)\.nwc$"
+    FPattern = "^XPGBG2-[01A][01AU][A]-\d{3}-\w{2}-[0A]0000-\w{3}(-DM|-DM-ROOM)\.nwc$"
     }
 
 #LB1 DM
 $LB1_DM = @{
     FName = "LB1-DM"
-    FPattern = "^XPGLB1-([0-4]|A)[ARU0]A-\d{3}-\w{2}-[A-H]0([A-H]|0)00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+    FPattern = "^XPGLB1-([0-4]|A)[ARU0]A-\d{3}-\w{2}-([A-H]|0)0([A-H]|0)00-\w{3}(-DM|-DM-ROOM)\.nwc$"
     }
 
 #P09 DM
 $P09_DM = @{
     FName = "P09-DM"
-    FPattern = "^XPGP09-([1-4]|A)[ARM0][AEH]-\d{3}-\w{2}-[A-D]0([A-D]|0)00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+    FPattern = "^XPGP09-([0-4]|A)[ARMU0][AEH]-\d{3}-\w{2}-([A-D]|0)0([A-D]|0)00-\w{3}(-DM|-DM-ROOM)\.nwc$"
     }
 
 #P12 DM
 $P12_DM = @{
     FName = "P12-DM"
-    FPattern = "^XPGP12-([1-4]|A)[AR0]A-\d{3}-\w{2}-[A-H]0([A-H]|0)00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+    FPattern = "^XPGP12-([0-4]|A)[ARU0]A-\d{3}-\w{2}-([A-H]|0)0([A-H]|0)00-\w{3}(-DM|-DM-ROOM)\.nwc$"
     }
 
 #PGC DM
@@ -1189,19 +1189,19 @@ $PGC_DM = @{
 #WTY DM
 $WTY_DM = @{
     FName = "WTY-DM"
-    FPattern = "^XPGWTY-\w{3}-\d{3}-\w{2}-A0000-\w{3}(-DM|-DM-ROOM)\.nwc$"
+    FPattern = "^XPGWTY-\w{3}-\d{3}-\w{2}-[0A]0000-\w{3}(-DM|-DM-ROOM)\.nwc$"
     }
 
 #BCS DM (this pattern is wrong but right. magic)
 $F26_BCS_DM = @{
     FName = "F26_BCS-DM"
-    FPattern = "^XPGF26-([1-3]|A)\w{2}-\d{3}-\w{2}-AC0AE-\w{3}-DM\.nwc$"
+    FPattern = "^XPGF26-([0-3]|A)\w{2}-\d{3}-\w{2}-(AC0AE|00000)-\w{3}-DM\.nwc$"
     }
 
 #LK1 DM
 $LK1_DM = @{
     FName = "LK1-DM"
-    FPattern = "^XPGLK1-([1-5]|A)\w{2}-\d{3}-\w{2}-A0B00-\w{3}-DM\.nwc$"
+    FPattern = "^XPGLK1-([0-5]|A)\w{2}-\d{3}-\w{2}-(A0B00|00000)-\w{3}-DM\.nwc$"
     }
 
 #---CM MODEL---
@@ -1209,31 +1209,31 @@ $LK1_DM = @{
 #BG1 CM
 $BG1_CM = @{
     FName = "BG1-CM"
-    FPattern = "^XPGBG1-[123A][ARM0][AWL]-\d{3}-\w{2}-[AC]0[BD]00-\w{3}-CM\.nwc$"
+    FPattern = "^XPGBG1-[0123A][ARMU0][AWL]-\d{3}-\w{2}-[0AC]0[0BD]00-\w{3}-CM\.nwc$"
     }
 
 #BG2 CM
 $BG2_CM = @{
     FName = "BG2-CM"
-    FPattern = "^XPGBG2-[1A][01A][A]-\d{3}-\w{2}-A0000-\w{3}-CM\.nwc$"
+    FPattern = "^XPGBG2-[01A][01AU][A]-\d{3}-\w{2}-[0A]0000-\w{3}-CM\.nwc$"
     }
 
 #LB1 CM
 $LB1_CM = @{
     FName = "LB1-CM"
-    FPattern = "^XPGLB1-([0-4]|A)[ARU0]A-\d{3}-\w{2}-[A-H]0([A-H]|0)00-\w{3}-CM\.nwc$"
+    FPattern = "^XPGLB1-([0-4]|A)[ARU0]A-\d{3}-\w{2}-([A-H]|0)0([A-H]|0)00-\w{3}-CM\.nwc$"
     }
 
 #P09 CM
 $P09_CM = @{
     FName = "P09-CM"
-    FPattern = "^XPGP09-([1-4]|A)[ARM0][AEH]-\d{3}-\w{2}-[A-D]0([A-D]|0)00-\w{3}-CM\.nwc$"
+    FPattern = "^XPGP09-([0-4]|A)[ARMU0][AEH]-\d{3}-\w{2}-([A-D]|0)0([A-D]|0)00-\w{3}-CM\.nwc$"
     }
 
 #P12 CM
 $P12_CM = @{
     FName = "P12-CM"
-    FPattern = "^XPGP12-([1-4]|A)[AR0]A-\d{3}-\w{2}-[A-H]0([A-H]|0)00-\w{3}-CM\.nwc$"
+    FPattern = "^XPGP12-([0-4]|A)[ARU0]A-\d{3}-\w{2}-([A-H]|0)0([A-H]|0)00-\w{3}-CM\.nwc$"
     }
 
 #PGC CM
@@ -1245,19 +1245,19 @@ $PGC_CM = @{
 #WTY CM
 $WTY_CM = @{
     FName = "WTY-CM"
-    FPattern = "^XPGWTY-\w{3}-\d{3}-\w{2}-A0000-\w{3}-CM\.nwc$"
+    FPattern = "^XPGWTY-\w{3}-\d{3}-\w{2}-[0A]0000-\w{3}-CM\.nwc$"
     }
 
 #BCS CM
 $F26_BCS_CM = @{
     FName = "F26_BCS-CM"
-    FPattern = "^XPGF26-([1-3]|A)\w{2}-\d{3}-\w{2}-AC0AE-\w{3}-CM\.nwc$"
+    FPattern = "^XPGF26-([0-3]|A)\w{2}-\d{3}-\w{2}-(AC0AE|00000)-\w{3}-CM\.nwc$"
     }
 
 #LK1 CM
 $LK1_CM = @{
     FName = "LK1-CM"
-    FPattern = "^XPGLK1-([1-5]|A)\w{2}-\d{3}-\w{2}-A0B00-\w{3}-CM\.nwc$"
+    FPattern = "^XPGLK1-([0-5]|A)\w{2}-\d{3}-\w{2}-(A0B00|00000)-\w{3}-CM\.nwc$"
     }
 
 #---EM MODEL---
@@ -1265,31 +1265,31 @@ $LK1_CM = @{
 #BG1 EM
 $BG1_EM = @{
     FName = "BG1-EM"
-    FPattern = "^XPGBG1-[123A][ARM0][AWL]-\d{3}-\w{2}-[AC]0[BD]00-\w{3}-EM\.nwc$"
+    FPattern = "^XPGBG1-[0123A][ARMU0][AWL]-\d{3}-\w{2}-[0AC]0[0BD]00-\w{3}-EM\.nwc$"
     }
 
 #BG2 EM
 $BG2_EM = @{
     FName = "BG2-EM"
-    FPattern = "^XPGBG2-[1A][01A][A]-\d{3}-\w{2}-A0000-\w{3}-EM\.nwc$"
+    FPattern = "^XPGBG2-[01A][01AU][A]-\d{3}-\w{2}-[0A]0000-\w{3}-EM\.nwc$"
     }
 
 #LB1 EM
 $LB1_EM = @{
     FName = "LB1-EM"
-    FPattern = "^XPGLB1-([0-4]|A)[ARU0]A-\d{3}-\w{2}-[A-H]0([A-H]|0)00-\w{3}-EM\.nwc$"
+    FPattern = "^XPGLB1-([0-4]|A)[ARU0]A-\d{3}-\w{2}-([A-H]|0)0([A-H]|0)00-\w{3}-EM\.nwc$"
     }
 
 #P09 EM
 $P09_EM = @{
     FName = "P09-EM"
-    FPattern = "^XPGP09-([1-4]|A)[ARM0][AEH]-\d{3}-\w{2}-[A-D]0([A-D]|0)00-\w{3}-EM\.nwc$"
+    FPattern = "^XPGP09-([0-4]|A)[ARMU0][AEH]-\d{3}-\w{2}-([A-D]|0)0([A-D]|0)00-\w{3}-EM\.nwc$"
     }
 
 #P12 EM
 $P12_EM = @{
     FName = "P12-EM"
-    FPattern = "^XPGP12-([1-4]|A)[AR0]A-\d{3}-\w{2}-[A-H]0([A-H]|0)00-\w{3}-EM\.nwc$"
+    FPattern = "^XPGP12-([0-4]|A)[ARU0]A-\d{3}-\w{2}-([A-H]|0)0([A-H]|0)00-\w{3}-EM\.nwc$"
     }
 
 #PGC EM
@@ -1301,17 +1301,17 @@ $PGC_EM = @{
 #WTY EM
 $WTY_EM = @{
     FName = "WTY-EM"
-    FPattern = "^XPGWTY-\w{3}-\d{3}-\w{2}-A0000-\w{3}-EM\.nwc$"
+    FPattern = "^XPGWTY-\w{3}-\d{3}-\w{2}-[0A]0000-\w{3}-EM\.nwc$"
     }
 
 #BCS EM
 $F26_BCS_EM = @{
     FName = "F26_BCS-EM"
-    FPattern = "^XPGF26-([1-3]|A)\w{2}-\d{3}-\w{2}-AC0AE-\w{3}-EM\.nwc$"
+    FPattern = "^XPGF26-([0-3]|A)\w{2}-\d{3}-\w{2}-(AC0AE|00000)-\w{3}-EM\.nwc$"
     }
 
 #LK1 EM
 $LK1_EM = @{
     FName = "LK1-EM"
-    FPattern = "^XPGLK1-([1-5]|A)\w{2}-\d{3}-\w{2}-A0B00-\w{3}-EM\.nwc$"
+    FPattern = "^XPGLK1-([0-5]|A)\w{2}-\d{3}-\w{2}-(A0B00|00000)-\w{3}-EM\.nwc$"
     }
