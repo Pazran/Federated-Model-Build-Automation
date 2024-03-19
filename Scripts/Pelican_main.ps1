@@ -788,7 +788,7 @@ try{
     }
 catch{
     $CopyException = $_.Exception.Message
-    WriteLog-Full $BuildException -Type ERROR
+    WriteLog-Full $CopyException -Type ERROR
     $BuildSuccess = $false
     }
 
