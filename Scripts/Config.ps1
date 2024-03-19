@@ -56,24 +56,32 @@ $ArgumentsByFinalFM = '/i "{0}" /od "{1}"' -f $ByFinalFM, $ByFinalFMOut
 $DateStarted = Get-Date
 $DateStartedText = $((Get-Date).ToString('yyyy-MM-dd'))
 $SelectionVPfile = "$PSScriptRoot\Ref\XPGPG-Viewpoints_SearchSet.nwd"
-$SpecialFile = "$TempNWDFolder"
-$BULogFile = "$PSScriptRoot\Logs\BatchUtility_fm_build_log_$DateStartedText.txt"
-$NewModelFile = "C:\test-temp-all\20-Federated-Model\203-NWCs\_New.txt"
-$PelicanASUModel = @("C:\test-temp-all\20-Federated-Model\204-NWDs\misc\Pelican ASU Model_Utilities Tie In_real world coordinate 20221205.nwd")
+#$SpecialFile = "$TempNWDFolder"
+#$BULogFile = "$PSScriptRoot\Logs\BatchUtility_fm_build_log_$DateStartedText.txt"
+#$NewModelFile = "C:\test-temp-all\20-Federated-Model\203-NWCs\_New.txt"
+$PelicanASUModel = @("$TempNWDFolder\misc\Pelican ASU Model_Utilities Tie In_real world coordinate 20221205.nwd")
 $BuildSuccess = $true
 
 #Janet's folder
 $OverallACCFolder = "C:\Users\$Env:UserName\Downloads\_OVERALL_ACC"
 $OverallACCFolder_Rejected = "C:\Users\$Env:UserName\Downloads\_OVERALL_ACC\_Rejected"
 $OverallACCFolder_Incorrect = "C:\Users\$Env:UserName\Downloads\_OVERALL_ACC\_Incorrect_folder"
+$ServerLogFolder = "\\a1300564\D\S13_BIM-VDC\20-Federated-Model\204-NWDs\_Logs"
 
+$IncorrectFolder = "$TempNWC_All\_Incorrect_folder"
+
+#Excel settings
+#$NRFile = '\\a1300564\D\S13_BIM-VDC\_Archive\++ Janet\Retired\N_R.xlsm'
+$NRFile = "$LogFolder\N_R.xlsm"
+$NSheet = 'NEW'
+$RSheet = 'RETIRED'
 
 #Folder initialization
 If(!(Test-Path "$PSScriptRoot\Logs")){
     New-Item -ItemType Directory -Path "$PSScriptRoot\Logs" -Force
     }
 
-################ FUNCTIONS REGION START ################
+################ FUNCTIONS ACT ################
 
 #Read excel file with read mode or refresh mode
 function ReadExcelFile
@@ -363,7 +371,7 @@ function RebuildNWF-Dynamic {
             $StageData = "1 By Level"
             ForEach($item in ($SortedModelArray.keys).GetEnumerator()){
 	            $Flist = $FileList -Match $SortedModelArray.$item.FPattern
-                $Flist_today = $FileListT.Name -Match $SortedModelArray.$item.FPattern
+                $Flist_today = $FileListT -Match $SortedModelArray.$item.FPattern
                 If ($Flist_today){
                     $Flist = $Flist | Sort
                     Write-Output $Flist
@@ -383,7 +391,7 @@ function RebuildNWF-Dynamic {
             Switch ($BuildingType){
                 Ancillary {
 	                $Flist = $FileList -Match $SortedModelArray.FPattern
-                    $Flist_today = $FileListT.Name -Match $SortedModelArray.FPattern
+                    $Flist_today = $FileListT -Match $SortedModelArray.FPattern
                     If ($Flist_today){
                         $Flist = $Flist | Sort
                         Write-Output $Flist
@@ -391,7 +399,7 @@ function RebuildNWF-Dynamic {
                         $Filein = "$BatchTextFolder\{0}\{1}.txt" -f $StageData, $SortedModelArray.FName
                         
                         #Check if it is BG1-CM.. If true, append Pelican ASU model
-                        If($SortedModelArray.FName = "BG1-CM"){
+                        If($SortedModelArray.FName -eq 'BG1-CM'){
                             WriteLog-Full ("Adding {0} into the list" -f ($PelicanASUModel -split "\\")[-1])
                             $FlistASU = $Flist | ForEach-Object { $_.FullName }
                             $FlistASU = $($FlistASU;$PelicanASUModel)
@@ -410,11 +418,11 @@ function RebuildNWF-Dynamic {
                 Main {
                     $List = @()
                     ForEach($item in $SortedModelArray.keys){
-	                    $Flist_today = $FileListT.Name -Match $SortedModelArray.$item.FName
+	                    $Flist_today = $FileListT -Match $SortedModelArray.$item.FName
                         If ($Flist_today){
                             $FileName = $SortedModelArray.$item.FName -replace "-.{3,4}-", "-"
                             ForEach($item in $SortedModelArray.keys){
-	                        $Flist = $FileList -Match $SortedModelArray.$item.FName
+	                        $Flist = $FileList.Name -Match $SortedModelArray.$item.FName
                             If ($Flist){
                                 $List += $Flist.FullName
                                 }
@@ -467,6 +475,45 @@ function GetModelToRebuild {
             }
         Building {
             $Flist_today = $FileListT.Name -Match $SortedModelArray.FPattern
+            If ($Flist_today){
+                $RebuildModelArray += $SortedModelArray.FName
+                }
+            }
+        }
+        Return $RebuildModelArray
+   }
+
+function GetModelToRebuild_List {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory)]
+        [Hashtable]$ModelArray,
+        [Parameter(Mandatory)]
+        [System.Object[]]$FileListT,
+        [Parameter(Mandatory)]
+        [ValidateSet('Level','Building')]
+        [String]$Stage,
+        [Parameter()]
+        [ValidateSet('Main','Ancillary')]
+        [String]$BuildingType
+        )
+
+        $RebuildModelArray=@()
+        $SortedModelArray = sortAlphabeticallyRecursive $ModelArray
+        Switch($Stage){
+        Level {
+            #$StageData = "1 By Level"
+            ForEach($item in ($SortedModelArray.keys).GetEnumerator()){
+	            #$Flist = $FileList -Match $SortedModelArray.$item.FPattern
+                $Flist_today = $FileListT -Match $SortedModelArray.$item.FPattern
+                If ($Flist_today){
+                    $RebuildModelArray += $SortedModelArray.$item.FName
+                    
+                    }
+                }
+            }
+        Building {
+            $Flist_today = $FileListT -Match $SortedModelArray.FPattern
             If ($Flist_today){
                 $RebuildModelArray += $SortedModelArray.FName
                 }
@@ -551,7 +598,7 @@ function BuildFederatedModel {
         }
     $i=0
     $Fin = Get-Content $StageDataIN
-    WriteLog-Full ("Building federated model {0}..." -f $StageText)
+    WriteLog-Full ("Building federated model {0}..." -f $StageText) -Type INFO
     ForEach($nwf in $Fin){
         $i=$i+1
         $nwfname = ((($nwf -split "\\")[-1]).Replace(".nwf",".nwd")).Replace(".nwf",".nwd")
@@ -566,7 +613,7 @@ function BuildFederatedModel {
 }
 
 
-########################## START NAME PATTERN ############################
+########################## NAME PATTERN ACT ############################
 
 # -----------------------
 #      BY LEVEL
@@ -1106,31 +1153,31 @@ $PGP_EM = @{
 #BG1 DM
 $BG1_DM = @{
     FName = "BG1-DM"
-    FPattern = "^XPGBG1-[123A][ARM0][AWL]-\d{3}-\w{2}-[AC]0[BD]00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+    FPattern = "^XPGBG1-[0123A][ARMU0][AWL]-\d{3}-\w{2}-[0AC]0[0BD]00-\w{3}(-DM|-DM-ROOM)\.nwc$"
     }
 
 #BG2 DM
 $BG2_DM = @{
     FName = "BG2-DM"
-    FPattern = "^XPGBG2-[1A][01A][A]-\d{3}-\w{2}-A0000-\w{3}(-DM|-DM-ROOM)\.nwc$"
+    FPattern = "^XPGBG2-[01A][01AU][A]-\d{3}-\w{2}-[0A]0000-\w{3}(-DM|-DM-ROOM)\.nwc$"
     }
 
 #LB1 DM
 $LB1_DM = @{
     FName = "LB1-DM"
-    FPattern = "^XPGLB1-([0-4]|A)[ARU0]A-\d{3}-\w{2}-[A-H]0([A-H]|0)00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+    FPattern = "^XPGLB1-([0-4]|A)[ARU0]A-\d{3}-\w{2}-([A-H]|0)0([A-H]|0)00-\w{3}(-DM|-DM-ROOM)\.nwc$"
     }
 
 #P09 DM
 $P09_DM = @{
     FName = "P09-DM"
-    FPattern = "^XPGP09-([1-4]|A)[ARM0][AEH]-\d{3}-\w{2}-[A-D]0([A-D]|0)00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+    FPattern = "^XPGP09-([0-4]|A)[ARMU0][AEH]-\d{3}-\w{2}-([A-D]|0)0([A-D]|0)00-\w{3}(-DM|-DM-ROOM)\.nwc$"
     }
 
 #P12 DM
 $P12_DM = @{
     FName = "P12-DM"
-    FPattern = "^XPGP12-([1-4]|A)[AR0]A-\d{3}-\w{2}-[A-H]0([A-H]|0)00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+    FPattern = "^XPGP12-([0-4]|A)[ARU0]A-\d{3}-\w{2}-([A-H]|0)0([A-H]|0)00-\w{3}(-DM|-DM-ROOM)\.nwc$"
     }
 
 #PGC DM
@@ -1142,19 +1189,19 @@ $PGC_DM = @{
 #WTY DM
 $WTY_DM = @{
     FName = "WTY-DM"
-    FPattern = "^XPGWTY-\w{3}-\d{3}-\w{2}-A0000-\w{3}(-DM|-DM-ROOM)\.nwc$"
+    FPattern = "^XPGWTY-\w{3}-\d{3}-\w{2}-[0A]0000-\w{3}(-DM|-DM-ROOM)\.nwc$"
     }
 
 #BCS DM (this pattern is wrong but right. magic)
 $F26_BCS_DM = @{
     FName = "F26_BCS-DM"
-    FPattern = "^XPGF26-([1-3]|A)\w{2}-\d{3}-\w{2}-AC0AE-\w{3}-DM\.nwc$"
+    FPattern = "^XPGF26-([0-3]|A)\w{2}-\d{3}-\w{2}-(AC0AE|00000)-\w{3}-DM\.nwc$"
     }
 
 #LK1 DM
 $LK1_DM = @{
     FName = "LK1-DM"
-    FPattern = "^XPGLK1-([1-5]|A)\w{2}-\d{3}-\w{2}-A0B00-\w{3}-DM\.nwc$"
+    FPattern = "^XPGLK1-([0-5]|A)\w{2}-\d{3}-\w{2}-(A0B00|00000)-\w{3}-DM\.nwc$"
     }
 
 #---CM MODEL---
@@ -1162,31 +1209,31 @@ $LK1_DM = @{
 #BG1 CM
 $BG1_CM = @{
     FName = "BG1-CM"
-    FPattern = "(^XPGBG1-[123A][ARM0][AWL]-\d{3}-\w{2}-[AC]0[BD]00-\w{3}-CM\.nwc$)"
+    FPattern = "^XPGBG1-[0123A][ARMU0][AWL]-\d{3}-\w{2}-[0AC]0[0BD]00-\w{3}-CM\.nwc$"
     }
 
 #BG2 CM
 $BG2_CM = @{
     FName = "BG2-CM"
-    FPattern = "^XPGBG2-[1A][01A][A]-\d{3}-\w{2}-A0000-\w{3}-CM\.nwc$"
+    FPattern = "^XPGBG2-[01A][01AU][A]-\d{3}-\w{2}-[0A]0000-\w{3}-CM\.nwc$"
     }
 
 #LB1 CM
 $LB1_CM = @{
     FName = "LB1-CM"
-    FPattern = "^XPGLB1-([0-4]|A)[ARU0]A-\d{3}-\w{2}-[A-H]0([A-H]|0)00-\w{3}-CM\.nwc$"
+    FPattern = "^XPGLB1-([0-4]|A)[ARU0]A-\d{3}-\w{2}-([A-H]|0)0([A-H]|0)00-\w{3}-CM\.nwc$"
     }
 
 #P09 CM
 $P09_CM = @{
     FName = "P09-CM"
-    FPattern = "^XPGP09-([1-4]|A)[ARM0][AEH]-\d{3}-\w{2}-[A-D]0([A-D]|0)00-\w{3}-CM\.nwc$"
+    FPattern = "^XPGP09-([0-4]|A)[ARMU0][AEH]-\d{3}-\w{2}-([A-D]|0)0([A-D]|0)00-\w{3}-CM\.nwc$"
     }
 
 #P12 CM
 $P12_CM = @{
     FName = "P12-CM"
-    FPattern = "^XPGP12-([1-4]|A)[AR0]A-\d{3}-\w{2}-[A-H]0([A-H]|0)00-\w{3}-CM\.nwc$"
+    FPattern = "^XPGP12-([0-4]|A)[ARU0]A-\d{3}-\w{2}-([A-H]|0)0([A-H]|0)00-\w{3}-CM\.nwc$"
     }
 
 #PGC CM
@@ -1198,19 +1245,19 @@ $PGC_CM = @{
 #WTY CM
 $WTY_CM = @{
     FName = "WTY-CM"
-    FPattern = "^XPGWTY-\w{3}-\d{3}-\w{2}-A0000-\w{3}-CM\.nwc$"
+    FPattern = "^XPGWTY-\w{3}-\d{3}-\w{2}-[0A]0000-\w{3}-CM\.nwc$"
     }
 
 #BCS CM
 $F26_BCS_CM = @{
     FName = "F26_BCS-CM"
-    FPattern = "^XPGF26-([1-3]|A)\w{2}-\d{3}-\w{2}-AC0AE-\w{3}-CM\.nwc$"
+    FPattern = "^XPGF26-([0-3]|A)\w{2}-\d{3}-\w{2}-(AC0AE|00000)-\w{3}-CM\.nwc$"
     }
 
 #LK1 CM
 $LK1_CM = @{
     FName = "LK1-CM"
-    FPattern = "^XPGLK1-([1-5]|A)\w{2}-\d{3}-\w{2}-A0B00-\w{3}-CM\.nwc$"
+    FPattern = "^XPGLK1-([0-5]|A)\w{2}-\d{3}-\w{2}-(A0B00|00000)-\w{3}-CM\.nwc$"
     }
 
 #---EM MODEL---
@@ -1218,31 +1265,31 @@ $LK1_CM = @{
 #BG1 EM
 $BG1_EM = @{
     FName = "BG1-EM"
-    FPattern = "^XPGBG1-[123A][ARM0][AWL]-\d{3}-\w{2}-[AC]0[BD]00-\w{3}-EM\.nwc$"
+    FPattern = "^XPGBG1-[0123A][ARMU0][AWL]-\d{3}-\w{2}-[0AC]0[0BD]00-\w{3}-EM\.nwc$"
     }
 
 #BG2 EM
 $BG2_EM = @{
     FName = "BG2-EM"
-    FPattern = "^XPGBG2-[1A][01A][A]-\d{3}-\w{2}-A0000-\w{3}-EM\.nwc$"
+    FPattern = "^XPGBG2-[01A][01AU][A]-\d{3}-\w{2}-[0A]0000-\w{3}-EM\.nwc$"
     }
 
 #LB1 EM
 $LB1_EM = @{
     FName = "LB1-EM"
-    FPattern = "^XPGLB1-([0-4]|A)[ARU0]A-\d{3}-\w{2}-[A-H]0([A-H]|0)00-\w{3}-EM\.nwc$"
+    FPattern = "^XPGLB1-([0-4]|A)[ARU0]A-\d{3}-\w{2}-([A-H]|0)0([A-H]|0)00-\w{3}-EM\.nwc$"
     }
 
 #P09 EM
 $P09_EM = @{
     FName = "P09-EM"
-    FPattern = "^XPGP09-([1-4]|A)[ARM0][AEH]-\d{3}-\w{2}-[A-D]0([A-D]|0)00-\w{3}-EM\.nwc$"
+    FPattern = "^XPGP09-([0-4]|A)[ARMU0][AEH]-\d{3}-\w{2}-([A-D]|0)0([A-D]|0)00-\w{3}-EM\.nwc$"
     }
 
 #P12 EM
 $P12_EM = @{
     FName = "P12-EM"
-    FPattern = "^XPGP12-([1-4]|A)[AR0]A-\d{3}-\w{2}-[A-H]0([A-H]|0)00-\w{3}-EM\.nwc$"
+    FPattern = "^XPGP12-([0-4]|A)[ARU0]A-\d{3}-\w{2}-([A-H]|0)0([A-H]|0)00-\w{3}-EM\.nwc$"
     }
 
 #PGC EM
@@ -1254,19 +1301,17 @@ $PGC_EM = @{
 #WTY EM
 $WTY_EM = @{
     FName = "WTY-EM"
-    FPattern = "^XPGWTY-\w{3}-\d{3}-\w{2}-A0000-\w{3}-EM\.nwc$"
+    FPattern = "^XPGWTY-\w{3}-\d{3}-\w{2}-[0A]0000-\w{3}-EM\.nwc$"
     }
 
 #BCS EM
 $F26_BCS_EM = @{
     FName = "F26_BCS-EM"
-    FPattern = "^XPGF26-([1-3]|A)\w{2}-\d{3}-\w{2}-AC0AE-\w{3}-EM\.nwc$"
+    FPattern = "^XPGF26-([0-3]|A)\w{2}-\d{3}-\w{2}-(AC0AE|00000)-\w{3}-EM\.nwc$"
     }
 
 #LK1 EM
 $LK1_EM = @{
     FName = "LK1-EM"
-    FPattern = "^XPGLK1-([1-5]|A)\w{2}-\d{3}-\w{2}-A0B00-\w{3}-EM\.nwc$"
+    FPattern = "^XPGLK1-([0-5]|A)\w{2}-\d{3}-\w{2}-(A0B00|00000)-\w{3}-EM\.nwc$"
     }
-
-########################## END NAME PATTERN ############################
