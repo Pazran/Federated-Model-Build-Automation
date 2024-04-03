@@ -22,13 +22,13 @@
 		<ByFederatedModel>C:\test-temp-all\20-Federated-Model\204-NWDs\FEDERATED MODEL</ByFederatedModel>
 		<ByFinalFM>C:\test-temp-all\20-Federated-Model\204-NWDs\FEDERATED MODEL</ByFinalFM>
 	</TempBuildFolder>
-	<MainBuildFolder>\\a1300564\D\S13_BIM-VDC\20-Federated-Model\204-NWDs</MainBuildFolder>
+	<MainBuildFolder>D:\S13_BIM-VDC\20-Federated-Model\204-NWDs</MainBuildFolder>
 	<TempNWDFolder>C:\test-temp-all\20-Federated-Model\204-NWDs</TempNWDFolder>
 	<MainNWCFolder>
-		<NWC_ALL>\\a1300564\D\S13_BIM-VDC\20-Federated-Model\203-NWCs</NWC_ALL>
-		<NWC_CM>\\a1300564\D\S13_BIM-VDC\20-Federated-Model\203-NWCs\CM-NWCS</NWC_CM>
-		<NWC_DM>\\a1300564\D\S13_BIM-VDC\20-Federated-Model\203-NWCs\DM-NWCS</NWC_DM>
-		<NWC_EM>\\a1300564\D\S13_BIM-VDC\20-Federated-Model\203-NWCs\EM-NWCS</NWC_EM>
+		<NWC_ALL>D:\S13_BIM-VDC\20-Federated-Model\203-NWCs</NWC_ALL>
+		<NWC_CM>D:\S13_BIM-VDC\20-Federated-Model\203-NWCs\CM-NWCS</NWC_CM>
+		<NWC_DM>D:\S13_BIM-VDC\20-Federated-Model\203-NWCs\DM-NWCS</NWC_DM>
+		<NWC_EM>D:\S13_BIM-VDC\20-Federated-Model\203-NWCs\EM-NWCS</NWC_EM>
 	</MainNWCFolder>
 	<LogFolder>C:\test-temp-all\20-Federated-Model\_Logs</LogFolder>
 	<TempNWCFolder>
@@ -37,8 +37,12 @@
 		<NWC_DM>C:\test-temp-all\20-Federated-Model\203-NWCs\DM-NWCS</NWC_DM>
 		<NWC_EM>C:\test-temp-all\20-Federated-Model\203-NWCs\EM-NWCS</NWC_EM>
 	</TempNWCFolder>
+	<ServerLogFolder>\\a1300564\D\S13_BIM-VDC\20-Federated-Model\204-NWDs\_Logs</ServerLogFolder>
 	<BackupLocation>C:\test-temp-all\20-Federated-Model\203-NWCs\_Archived</BackupLocation>
 	<RejectedLocation>C:\test-temp-all\20-Federated-Model\203-NWCs\_Rejected</RejectedLocation>
+	<IncorrectLocation>C:\test-temp-all\20-Federated-Model\203-NWCs\_Incorrect_folder</IncorrectLocation>
+	<RejectedLocationServer>D:\S13_BIM-VDC\20-Federated-Model\203-NWCs\_Rejected</RejectedLocationServer>
+	<IncorrectLocationServer>D:\S13_BIM-VDC\20-Federated-Model\203-NWCs\_Incorrect_folder</IncorrectLocationServer>
 	<NWFFolderAll>C:\test-temp-all\20-Federated-Model\204-NWDs\_NWF\_NWFs</NWFFolderAll>
 	<NWFFolderByLevel>C:\test-temp-all\20-Federated-Model\204-NWDs\_NWF\_NWFs\1 By Level</NWFFolderByLevel>
 	<NWFFolderByBuilding>C:\test-temp-all\20-Federated-Model\204-NWDs\_NWF\_NWFs\2 By Building</NWFFolderByBuilding>

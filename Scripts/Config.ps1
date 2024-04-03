@@ -12,6 +12,9 @@ $BatchUtilityProcess = $ConfigLocation.BatchUtility
 $LogFolder = "$PSScriptRoot\Logs"
 $BackupDirectory = $ConfigLocation.BackupLocation
 $RejectedFolder = $ConfigLocation.RejectedLocation
+$IncorrectFolder = $ConfigLocation.IncorrectLocation
+$RejectedFolderServer = $ConfigLocation.RejectedLocationServer
+$IncorrectFolderServer = $ConfigLocation.IncorrectLocationServer
 $MainBuildFolder = $ConfigLocation.MainBuildFolder
 $TempNWDFolder = $ConfigLocation.TempNWDFolder
 $NWFFolderAll = $ConfigLocation.NWFFolderAll
@@ -66,11 +69,9 @@ $BuildSuccess = $true
 $OverallACCFolder = "C:\Users\$Env:UserName\Downloads\_OVERALL_ACC"
 $OverallACCFolder_Rejected = "C:\Users\$Env:UserName\Downloads\_OVERALL_ACC\_Rejected"
 $OverallACCFolder_Incorrect = "C:\Users\$Env:UserName\Downloads\_OVERALL_ACC\_Incorrect_folder"
-$ServerLogFolder = "\\a1300564\D\S13_BIM-VDC\20-Federated-Model\204-NWDs\_Logs"
+$ServerLogFolder = $ConfigLocation.ServerLogFolder
 
-$IncorrectFolder = "$TempNWC_All\_Incorrect_folder"
-
-#Excel settings
+#Excel settings (Depreciated)
 #$NRFile = '\\a1300564\D\S13_BIM-VDC\_Archive\++ Janet\Retired\N_R.xlsm'
 $NRFile = "$LogFolder\N_R.xlsm"
 $NSheet = 'NEW'
@@ -625,23 +626,23 @@ function BuildFederatedModel {
 $F26_APB1_DM = @{
     L1 = @{
         FName = "F26_APB1-1YA-DM"
-        FPattern = "^XPGF26-[01]\w{2}-\d{3}-\w{2}-A0S00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGF26-[01]\w{2}-\d{3}-\w{2}-A0S00-\w{3}-DM\.nwc$"
         }
     L2 = @{
         FName = "F26_APB1-2YA-DM"
-        FPattern = "^XPGF26-2\w{2}-\d{3}-\w{2}-A0S00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGF26-2\w{2}-\d{3}-\w{2}-A0S00-\w{3}-DM\.nwc$"
         }
     L3 = @{
         FName = "F26_APB1-3FA-DM"
-        FPattern = "^XPGF26-3F[ABJ]-\d{3}-\w{2}-A0S00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGF26-3F[ABJ]-\d{3}-\w{2}-A0S00-\w{3}-DM\.nwc$"
         }
     L4 = @{
         FName = "F26_APB1-4FA-DM"
-        FPattern = "^XPGF26-4F[ABJ]-\d{3}-\w{2}-A0S00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGF26-4F[ABJ]-\d{3}-\w{2}-A0S00-\w{3}-DM\.nwc$"
         }
     L5 = @{
         FName = "F26_APB1-5RA-DM"
-        FPattern = "^XPGF26-5[RP]A-\d{3}-\w{2}-A0S00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGF26-5[RP]A-\d{3}-\w{2}-A0S00-\w{3}-DM\.nwc$"
         }
     }
 
@@ -649,23 +650,23 @@ $F26_APB1_DM = @{
 $F26_APB2_DM = @{
     L1 = @{
         FName = "F26_APB2-1YA-DM"
-        FPattern = "^XPGF26-[01]\w{2}-\d{3}-\w{2}-W0AB0-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGF26-[01]\w{2}-\d{3}-\w{2}-W0AB0-\w{3}-DM\.nwc$"
         }
     L2 = @{
         FName = "F26_APB2-2YA-DM"
-        FPattern = "^XPGF26-2\w{2}-\d{3}-\w{2}-W0AB0-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGF26-2\w{2}-\d{3}-\w{2}-W0AB0-\w{3}-DM\.nwc$"
         }
     L3 = @{
         FName = "F26_APB2-3FA-DM"
-        FPattern = "^XPGF26-3F[ABJ]-\d{3}-\w{2}-W0AB0-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGF26-3F[ABJ]-\d{3}-\w{2}-W0AB0-\w{3}-DM\.nwc$"
         }
     L4 = @{
         FName = "F26_APB2-4FA-DM"
-        FPattern = "^XPGF26-4F[ABJ]-\d{3}-\w{2}-W0AB0-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGF26-4F[ABJ]-\d{3}-\w{2}-W0AB0-\w{3}-DM\.nwc$"
         }
     L5 = @{
         FName = "F26_APB2-5RA-DM"
-        FPattern = "^XPGF26-5[RP]A-\d{3}-\w{2}-W0AB0-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGF26-5[RP]A-\d{3}-\w{2}-W0AB0-\w{3}-DM\.nwc$"
         }
     }
 
@@ -673,23 +674,23 @@ $F26_APB2_DM = @{
 $F26_FAB_DM = @{
     L1 = @{
         FName = "F26_FAB-1YA-DM"
-        FPattern = "^XPGF26-[01]\w{2}-\d{3}-\w{2}-[CT]0V00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGF26-[01]\w{2}-\d{3}-\w{2}-[CT]0V00-\w{3}-DM\.nwc$"
         }
     L2 = @{
         FName = "F26_FAB-2SA-DM"
-        FPattern = "^XPGF26-2\w{2}-\d{3}-\w{2}-[CT]0V00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGF26-2\w{2}-\d{3}-\w{2}-[CT]0V00-\w{3}-DM\.nwc$"
         }
     L3 = @{
         FName = "F26_FAB-3FA-DM"
-        FPattern = "^XPGF26-3\w{2}-\d{3}-\w{2}-[CT]0V00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGF26-3\w{2}-\d{3}-\w{2}-[CT]0V00-\w{3}-DM\.nwc$"
         }
     L4 = @{
         FName = "F26_FAB-4IA-DM"
-        FPattern = "^XPGF26-4\w{2}-\d{3}-\w{2}-[CT]0V00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGF26-4\w{2}-\d{3}-\w{2}-[CT]0V00-\w{3}-DM\.nwc$"
         }
     L5 = @{
         FName = "F26_FAB-5RA-DM"
-        FPattern = "^XPGF26-5\w{2}-\d{3}-\w{2}-[CT]0V00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGF26-5\w{2}-\d{3}-\w{2}-[CT]0V00-\w{3}-DM\.nwc$"
         }
     }
 
@@ -697,39 +698,39 @@ $F26_FAB_DM = @{
 $PGB_DM = @{
     L1 = @{
         FName = "PGB-010A-DM"
-        FPattern = "^XPGPGB-01\w{2}-\d{3}-\w{2}-[AB]0[0Q]00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGPGB-01\w{2}-\d{3}-\w{2}-[AB]0[0Q]00-\w{3}-DM\.nwc$"
         }
     L2 = @{
         FName = "PGB-020A-DM"
-        FPattern = "^XPGPGB-02\w{2}-\d{3}-\w{2}-[AB]0[0Q]00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGPGB-02\w{2}-\d{3}-\w{2}-[AB]0[0Q]00-\w{3}-DM\.nwc$"
         }
     L3 = @{
         FName = "PGB-030A-DM"
-        FPattern = "^XPGPGB-03\w{2}-\d{3}-\w{2}-[AB]0[0Q]00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGPGB-03\w{2}-\d{3}-\w{2}-[AB]0[0Q]00-\w{3}-DM\.nwc$"
         }
     L4 = @{
         FName = "PGB-040A-DM"
-        FPattern = "^XPGPGB-04\w{2}-\d{3}-\w{2}-[AB]0[0Q]00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGPGB-04\w{2}-\d{3}-\w{2}-[AB]0[0Q]00-\w{3}-DM\.nwc$"
         }
     L5 = @{
         FName = "PGB-050A-DM"
-        FPattern = "^XPGPGB-05\w{2}-\d{3}-\w{2}-[AB]0[0Q]00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGPGB-05\w{2}-\d{3}-\w{2}-[AB]0[0Q]00-\w{3}-DM\.nwc$"
         }
     L6 = @{
         FName = "PGB-060A-DM"
-        FPattern = "^XPGPGB-06\w{2}-\d{3}-\w{2}-[AB]0[0Q]00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGPGB-06\w{2}-\d{3}-\w{2}-[AB]0[0Q]00-\w{3}-DM\.nwc$"
         }
     L7 = @{
         FName = "PGB-070A-DM"
-        FPattern = "^XPGPGB-07\w{2}-\d{3}-\w{2}-[AB]0[0Q]00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGPGB-07\w{2}-\d{3}-\w{2}-[AB]0[0Q]00-\w{3}-DM\.nwc$"
         }
     L8 = @{
         FName = "PGB-080A-DM"
-        FPattern = "^XPGPGB-08\w{2}-\d{3}-\w{2}-[AB]0[0Q]00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGPGB-08\w{2}-\d{3}-\w{2}-[AB]0[0Q]00-\w{3}-DM\.nwc$"
         }
     L9 = @{
         FName = "PGB-09RA-DM"
-        FPattern = "^XPGPGB-09\w{2}-\d{3}-\w{2}-[AB]0[0Q]00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGPGB-09\w{2}-\d{3}-\w{2}-[AB]0[0Q]00-\w{3}-DM\.nwc$"
         }
     }
 
@@ -737,60 +738,60 @@ $PGB_DM = @{
 $PGP_DM = @{
     L0 = @{
         FName = "PGP-0UA-DM"
-        FPattern = "^XPGPGP-0\w{2}-\d{3}-\w{2}-F0Q00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGPGP-0\w{2}-\d{3}-\w{2}-F0Q00-\w{3}-DM\.nwc$"
         }
 
     L1 = @{
         FName = "PGP-010A-DM"
-        FPattern = "^XPGPGP-01\w{2}-\d{3}-\w{2}-F0Q00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGPGP-01\w{2}-\d{3}-\w{2}-F0Q00-\w{3}-DM\.nwc$"
         }
     L2 = @{
         FName = "PGP-020A-DM"
-        FPattern = "^XPGPGP-02\w{2}-\d{3}-\w{2}-F0Q00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGPGP-02\w{2}-\d{3}-\w{2}-F0Q00-\w{3}-DM\.nwc$"
         }
     L3 = @{
         FName = "PGP-030A-DM"
-        FPattern = "^XPGPGP-03\w{2}-\d{3}-\w{2}-F0Q00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGPGP-03\w{2}-\d{3}-\w{2}-F0Q00-\w{3}-DM\.nwc$"
         }
     L4 = @{
         FName = "PGP-040A-DM"
-        FPattern = "^XPGPGP-04\w{2}-\d{3}-\w{2}-F0Q00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGPGP-04\w{2}-\d{3}-\w{2}-F0Q00-\w{3}-DM\.nwc$"
         }
     L5 = @{
         FName = "PGP-050A-DM"
-        FPattern = "^XPGPGP-05\w{2}-\d{3}-\w{2}-F0Q00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGPGP-05\w{2}-\d{3}-\w{2}-F0Q00-\w{3}-DM\.nwc$"
         }
     L6 = @{
         FName = "PGP-060A-DM"
-        FPattern = "^XPGPGP-06\w{2}-\d{3}-\w{2}-F0Q00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGPGP-06\w{2}-\d{3}-\w{2}-F0Q00-\w{3}-DM\.nwc$"
         }
     L7 = @{
         FName = "PGP-070A-DM"
-        FPattern = "^XPGPGP-07\w{2}-\d{3}-\w{2}-F0Q00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGPGP-07\w{2}-\d{3}-\w{2}-F0Q00-\w{3}-DM\.nwc$"
         }
     L8 = @{
         FName = "PGP-080A-DM"
-        FPattern = "^XPGPGP-08\w{2}-\d{3}-\w{2}-F0Q00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGPGP-08\w{2}-\d{3}-\w{2}-F0Q00-\w{3}-DM\.nwc$"
         }
     L9 = @{
         FName = "PGP-090A-DM"
-        FPattern = "^XPGPGP-09\w{2}-\d{3}-\w{2}-F0Q00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGPGP-09\w{2}-\d{3}-\w{2}-F0Q00-\w{3}-DM\.nwc$"
         }
     L10 = @{
         FName = "PGP-100A-DM"
-        FPattern = "^XPGPGP-10\w{2}-\d{3}-\w{2}-F0Q00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGPGP-10\w{2}-\d{3}-\w{2}-F0Q00-\w{3}-DM\.nwc$"
         }
     L11 = @{
         FName = "PGP-110A-DM"
-        FPattern = "^XPGPGP-11\w{2}-\d{3}-\w{2}-F0Q00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGPGP-11\w{2}-\d{3}-\w{2}-F0Q00-\w{3}-DM\.nwc$"
         }
     L12 = @{
         FName = "PGP-120A-DM"
-        FPattern = "^XPGPGP-12\w{2}-\d{3}-\w{2}-F0Q00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGPGP-12\w{2}-\d{3}-\w{2}-F0Q00-\w{3}-DM\.nwc$"
         }
     L13 = @{
         FName = "PGP-13RA-DM"
-        FPattern = "^XPGPGP-13\w{2}-\d{3}-\w{2}-F0Q00-\w{3}(-DM|-DM-ROOM)\.nwc$"
+        FPattern = "^XPGPGP-13\w{2}-\d{3}-\w{2}-F0Q00-\w{3}-DM\.nwc$"
         }
     }
 

@@ -441,13 +441,13 @@ try{
                 #WriteLog-Full ("EM model found: {0}" -f ($ListOFNWC.Name -like "*-EM*.nwc")) -Type INFO
                 }
             #$ListOFNWCEM = Get-ChildItem $TempNWC_All -Exclude "_Archived","_Rejected","test","_New.txt","_Incorrect_folder" -Include $EMModelList -Recurse | Where-Object {$_.FullName -notlike "*\_*"}
-            $ListOFNWCEM = Get-ChildItem $TempNWC_All -Exclude "_Archived","_Rejected","_Incorrect_folder" -Include $EMModelList -Recurse | Get-ChildItem -Recurse -Filter "*.nwc"
+            #$ListOFNWCEM = Get-ChildItem $TempNWC_All -Exclude "_Archived","_Rejected","_Incorrect_folder" -Include $EMModelList -Recurse | Get-ChildItem -Recurse -Filter "*.nwc"
 
             $FMModeltoRebuildByLevel = @()
             ForEach($Phase in $ModelPhase){
                 ForEach($Model in $ModelArrayLevel){
                     $Array = (Get-Variable $Model$Phase).Value
-                    $ModelList = GetModelToRebuild -ModelArray $Array -FileListT $ListOFNWCEM -Stage Level
+                    $ModelList = GetModelToRebuild_List -ModelArray $Array -FileListT $EMModelList -Stage Level
                     $FMModeltoRebuildByLevel += $ModelList
                 }
             }
@@ -467,7 +467,7 @@ try{
             ForEach($Phase in $ModelPhase){
                 ForEach($Model in $ModelArrayAncillaryBuilding){
                     $Array = (Get-Variable $Model$Phase).Value
-                    $ModelList = GetModelToRebuild -ModelArray $Array -FileListT $ListOFNWCEM -Stage Building
+                    $ModelList = GetModelToRebuild_List -ModelArray $Array -FileListT $EMModelList -Stage Building
                     $FMModeltoRebuildByBuilding += $ModelList
                 }
             }
@@ -551,7 +551,7 @@ If($WithUpdatedModel -or $WithNewModel -or $WithRetiredModel){
         If($ToIncludeByLevel){
             $NWFListByLevel = Get-ChildItem $NWFFolderByLevel -Include $ToIncludeByLevel -Recurse -Filter "*.nwf"
             Write-Output $NWFListByLevel.Name
-            WriteLog-Full ("Writing NWF list By Level into: {0}" -f (($ByLevel -split"\\")[-1]))
+            WriteLog-Full ("Writing NWF list By Level into: {0}" -f (($ByLevel -split"\\")[-1])) #can use  -- Split-Path -Path $ByLevel -Leaf
             Out-File -Filepath $ByLevel -InputObject $NWFListByLevel.FullName
             }
         else{
@@ -658,18 +658,18 @@ try{
         $viewpoint = $napiDC.Document.SavedViewpoints.CreateCopy()
         $selectionset = $napiDC.Document.SelectionSets.CreateCopy()
         ForEach($nwf in $NWFList){
-            If(!($nwf.Name -match "(PG-FM|F26-FM)")){
-                $i = $i+1
-                Write-Progress -Activity "Updating Selection Sets and Viewpoints..." -Status ("Updating file: {0}" -f $nwf.Name) -PercentComplete (($i/$NWFList.count)*100)
-                WriteLog-Full ("Updating file: {0}" -f $nwf)
-                $napiDC.Document.TryOpenFile($nwf.FullName)
-                $napiDC.Document.SavedViewpoints.Clear()
-                $napiDC.Document.SavedViewpoints.CopyFrom($viewpoint)
-                $napiDC.Document.SelectionSets.Clear()
-                $napiDC.Document.SelectionSets.CopyFrom($selectionset)
-                $napiDC.Document.SaveFile($nwf.FullName)
+            #If(!($nwf.Name -match "(PG-FM|F26-FM)")){
+            $i = $i+1
+            Write-Progress -Activity "Updating Selection Sets and Viewpoints..." -Status ("Updating file: {0}" -f $nwf.Name) -PercentComplete (($i/$NWFList.count)*100)
+            WriteLog-Full ("Updating file: {0}" -f $nwf)
+            $napiDC.Document.TryOpenFile($nwf.FullName)
+            $napiDC.Document.SavedViewpoints.Clear()
+            $napiDC.Document.SavedViewpoints.CopyFrom($viewpoint)
+            $napiDC.Document.SelectionSets.Clear()
+            $napiDC.Document.SelectionSets.CopyFrom($selectionset)
+            $napiDC.Document.SaveFile($nwf.FullName)
             }
-        }
+        #}
         }
     else{
         WriteLog-Full ("Master model with search sets and viewpoints does not exist: {0}" -f $SelectionVPfile) -Type WARN
@@ -792,6 +792,8 @@ catch{
     $BuildSuccess = $false
     }
 
+####### EXTRA FUNCTIONS ADDED AFTER HERE #######
+
 #Remove old NWC and copy latest NWC into Main NWD folder
 <#
 $i=0
@@ -809,6 +811,35 @@ Get-ChildItem $MainNWC_EM -Filter "*.nwc" | ForEach-Object { Remove-Item -Path $
 Get-ChildItem $TempNWC_DM -Filter "*.nwc" | ForEach-Object { Copy-Item -Path $_.FullName -Destination "$MainNWC_DM" -Force }
 Get-ChildItem $TempNWC_CM -Filter "*.nwc" | ForEach-Object { Copy-Item -Path $_.FullName -Destination "$MainNWC_CM" -Force }
 Get-ChildItem $TempNWC_EM -Filter "*.nwc" | ForEach-Object { Copy-Item -Path $_.FullName -Destination "$MainNWC_EM" -Force }
+
+#Copy Rejected and Incorrect folder into Server
+try{
+    #$RejectedFolderServer = "D:\S13_BIM-VDC\20-Federated-Model\203-NWCs\_Rejected" --backup just in case need to revert
+    #$IncorrectFolderServer = "D:\S13_BIM-VDC\20-Federated-Model\203-NWCs\_Incorrect_folder" --backup just in case need to revert
+
+    #Check if directory exist. If not create it
+    If(!(Test-Path $RejectedFolderServer)){
+        New-Item -ItemType Directory -Path $RejectedFolderServer -Force
+        }
+    If(!(Test-Path $IncorrectFolderServer)){
+        New-Item -ItemType Directory -Path $IncorrectFolderServer -Force
+        }
+
+    #Clear the Rejected and Incorrect folder in the server
+    Get-ChildItem $RejectedFolderServer | ForEach-Object { Remove-Item -Path $_.FullName -Force }
+    Get-ChildItem $IncorrectFolderServer | ForEach-Object { Remove-Item -Path $_.FullName -Force }
+
+    #Copy into Server (BIM Machine)
+    WriteLog-Full "Copy Rejected and Incorrect folder into BIM Machine"
+    Get-ChildItem $RejectedFolder | ForEach-Object { Move-Item -Path $_.FullName -Destination ("$RejectedFolderServer\{0}" -f $_.Name) -Force }
+    Get-ChildItem $IncorrectFolder | ForEach-Object { Move-Item -Path $_.FullName -Destination ("$RejectedFolderServer\{0}" -f $_.Name) -Force }
+    }
+
+catch{
+    $CopyException = $_.Exception.Message
+    WriteLog-Full "$CopyException" -Type ERROR
+    $BuildSuccess=$false
+    }
 
 $LogFile = "$LogFolder\Pelican_federated_model_build_log_{0}.csv" -f $DateStartedText
 Copy-Item -Path $LogFile -Destination ("$ServerLogFolder\Pelican_federated_model_build_log_{0}.csv" -f $DateStartedText)
