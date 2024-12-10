@@ -81,5 +81,5 @@ All the steps below are done automatically when you run the script. They are onl
     - Generate all federated model in the list.
 
 ## AUTHOR
-Lawrenerno Jinkim
+Lawrenerno Jinkim  
 Janet Jasintha Lopez
