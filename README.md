@@ -1,5 +1,6 @@
 # Federated-Model-Build-Automation
-Using Powershell to automate the process of model federation (NWF and NWD files) for the Intel Pelican Project.
+Using Powershell to automate the process of model federation (NWF and NWD files) for the Intel Pelican Project (Exyte Malaysia).
+Disclaimer: This is published on Github for learning.
 
 ## SYNOPSIS
 Builds the Models of the project S96029 (Pelican):
@@ -80,5 +81,5 @@ All the steps below are done automatically when you run the script. They are onl
     - Generate all federated model in the list.
 
 ## AUTHOR
-Janet Jasintha Lopez (janetjasintha.lopez@exyte.net)  
-Lawrenerno Jinkim (lawrenerno.jinkim@exyte.net)
+Lawrenerno Jinkim
+Janet Jasintha Lopez
